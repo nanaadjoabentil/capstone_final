@@ -23,6 +23,10 @@ else if (isset($_POST['teacherlogin']))
 {
   teachervalidateLogin();
 }
+else if (isset($_POST['enterCondition']))
+{
+  enterCondition();
+}
 
 //function to check if username is unique
 function checkUsername()
@@ -343,6 +347,33 @@ function teacherLogin()
   else
   {
     echo "Error occurred. Please try again.";
+  }
+}
+
+//function to add a health condition to a student
+function enterCondition()
+{
+  $id = '3837';
+  $condition = $_POST['condition'];
+  $details = $_POST['details'];
+
+  $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
+  // $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
+  echo $sql;
+  //new instance of database class
+
+  $login = new Connect;
+
+  //execute query
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Condition name: ". $condition . ", " ."successfully added to ID: ". $id;
+  }
+  else
+  {
+    echo "Condition name: ". $condition . ", " . "Not added. Try again";
   }
 }
  ?>
