@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
  <html>
    <head>
@@ -23,28 +22,15 @@
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<p id = "heading"> Admin Dashboard </p>
+<p id = "heading"> Student Personal Information </p>
 <br>
 
 <?php
 require_once('../../unsecure/processunsecure.php');
- ?>
-
-Welcome to the admin dashboard. <BR><BR>
-here, the admin can: <br><br>
-
-1. view and edit staff profiles<br>
-2. view staff classes<br>
-3. view and edit inventory<br>
-4. view student academic data <br>
-5. view and edit student personal information <br>
-6. view and edit student health information <br>
-7. view and edit student financial information <br>
-
-<bR>
-  will do these in the form of cards with nice designs on each <br>
-  each card leads to a page.
 
 
+viewStudentPersonal(35);
+
+?>
 </body>
 </html>

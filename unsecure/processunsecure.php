@@ -359,7 +359,7 @@ function enterCondition()
 
   $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
   // $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
-  
+
   //new instance of database class
 
   $login = new Connect;
@@ -374,6 +374,74 @@ function enterCondition()
   else
   {
     echo "Condition name: ". $condition . ", " . "Not added. Try again";
+  }
+}
+
+//function to fetch student information to be viewed
+function viewStudentPersonal($id)
+{
+  $sql = "SELECT * FROM student WHERE id = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  $results = $login->fetch();
+
+  if ($results)
+  {
+  echo $results['firstname']."'s'" . " personal information:". '<br><br>';
+  echo "ID: ". $results['id']. '<br><br>';
+  echo "First Name: ". $results['firstname']. '<br><br>';
+  if ($results['middlename'] != "")
+  {
+    echo "Middle Name: ". $results['middlename']. '<br><br>';
+  }
+  echo "Last Name: ". $results['lastname']. '<br><br>';
+  echo "Date of Birth: ". $results['dateofbirth']. '<br><br>';
+  echo "Age: ". $results['age']. '<br><br>';
+  echo "Gender: ". $results['gender']. '<br><br>';
+  echo "Postal Address: ". $results['postaladdress']. '<br><br>';
+  echo "First Parent's Name: ". $results['parent1name']. '<br><br>';
+  echo "First Parent's Number: ". $results['parent1number']. '<br><br>';
+  echo "Second Parent's Name: ". $results['parent2name']. '<br><br>';
+  echo "Second Parent's Telephone Number: ". $results['parent2number']. '<br><br>';
+  echo "Email address: ". $results['contactemail']. '<br><br>';
+}
+}
+
+//function to view student health Information
+function viewStudentHealth($id)
+{
+  $sql = "SELECT * FROM health_conditions WHERE sid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  $results = $login->fetch();
+
+  if ($results)
+  {
+    $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
+    $ans = $login->query($sql2);
+    $res = $login->fetch();
+
+    echo $res['firstname'] . " " . $res['lastname'] . "'s health information: " . '<br><br>';
+
+//loop through and print all results with the specified ID
+
+    // $a = "";
+    // while ($a < count($results)) {
+    //   echo "Condition ID: " . $results['cid'].'<br><br>';
+    //   echo "Condition Name: ". $results['health_condition'].'<br><br>';
+    //   echo "Details: ". $results['details'].'<br><br>';
+    //   $a++;
+    // }
+    $length = count($results);
+    for ($i = 0; $i < $length; $i++) {
+      print $results[$i];
+    }
   }
 }
  ?>
