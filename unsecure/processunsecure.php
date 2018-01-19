@@ -27,6 +27,11 @@ else if (isset($_POST['enterCondition']))
 {
   enterCondition();
 }
+else if (isset($_POST['addInventory']))
+{
+  addInventory();
+}
+
 
 //function to check if username is unique
 function checkUsername()
@@ -443,5 +448,84 @@ function viewStudentHealth($id)
       print $results[$i];
     }
   }
+}
+
+//function to add inventory Item
+function addInventory()
+{
+  $item_name = $_POST['item_name'];
+  $item_type = $_POST['type'];
+  $number = $_POST['number'];
+  $other_type = $_POST['other'];
+
+  if ($item_type == "other")
+  {
+    $sql = "INSERT INTO inventory(item_name,item_type,num_in_stock) VALUES ('$item_name','$other_type','$number')";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    if ($run)
+    {
+      echo $number . " ". $item_name. "(s) Successfully Added to Inventory Database";
+    }
+    else
+    {
+      echo "Error Occurred. Could not Add ". $number . " " . $item_name . "(s) to Database. Try Again";
+    }
+  }
+  else
+  {
+    $sql = "INSERT INTO inventory(item_name,item_type,num_in_stock) VALUES ('$item_name','$item_type','$number')";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    if ($run)
+    {
+      echo $number . " ". $item_name. "(s) Successfully Added to Inventory Database";
+    }
+    else
+    {
+      echo "Error Occurred. Could not Add ". $number . " " . $item_name . "(s) to Database. Try Again";
+    }
+  }
+}
+
+//function to view inventoru Items
+function viewInventory()
+{
+  $sql = "SELECT * FROM inventory";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $results = $login->fetch();
+
+  echo "<table>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Number in Stock</th></tr>";
+
+  for ($i=0; $i < count($results); $i++) {
+    echo "<tr>";
+    echo count($results);
+    echo "<td>".$results['id']."</td>";
+    echo "<td>".$results['item_name']."</td>";
+    echo "<td>".$results['item_type']."</td>";
+    echo "<td>".$results['num_in_stock']."</td>";
+    echo "</tr>";
+  }
+//   foreach($results as $row)
+//   {
+//     echo "<tr>";
+//     echo "<td>".$row['id']."</td>";
+//     echo "<td>".$row['item_name']."</td>";
+//     echo "<td>".$row['item_type']."</td>";
+//     echo "<td>".$row['num_in_stock']."</td>";
+//     echo "</tr>";
+// }
+echo "</table>";
+
 }
  ?>
