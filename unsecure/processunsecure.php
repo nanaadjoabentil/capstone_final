@@ -359,7 +359,7 @@ function enterCondition()
 
   $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
   // $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
-  echo $sql;
+  
   //new instance of database class
 
   $login = new Connect;
