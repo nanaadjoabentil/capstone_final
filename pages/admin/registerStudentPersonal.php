@@ -4,9 +4,9 @@
      <!--Import Google Icon Font-->
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <!--Import materialize.css-->
-     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="register.css"  media="screen,projection"/>
+     <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"  media="screen,projection"/>
+     <link type="text/css" rel="stylesheet" href="../../css/materialize.css"  media="screen,projection"/>
+     <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
      <!-- Compiled and minified CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
@@ -17,7 +17,7 @@
 
      <!--Import jQuery before materialize.js-->
      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-     <script type="text/javascript" src="js/materialize.min.js"></script>
+     <script type="text/javascript" src="../../js/materialize.min.js"></script>
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
@@ -25,7 +25,7 @@
 <br>
 
      <form method="post" action="" class ="col s8">
-       <?php require_once('processunsecure.php'); ?>
+       <?php require_once('../../unsecure/processunsecure.php'); ?>
         <div class="row">
          <div class="input-field col s4">
             <input id="firstname" type="text" name = "firstname" class="validate">
