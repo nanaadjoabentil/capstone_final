@@ -25,12 +25,19 @@
 <p id = "heading"> Student Health Information </p>
 <br>
 
+<form method="post">
+<div class="row">
+<div class="input-field col s6">
+   <input id="id" type="text" name = "id" class="validate">
+   <label for="id">Search...</label>
+ </div>
+ <button class="btn waves-effect waves-light" type="submit" name="searchHealth">Search</button>
+</div>
+</form>
+
+
 <?php
 require_once('../../unsecure/processunsecure.php');
-
-
-viewStudentHealth(3837);
-
 ?>
 </body>
 </html>

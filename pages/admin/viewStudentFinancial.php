@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
  <html>
    <head>
@@ -23,19 +22,22 @@
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<p id = "heading"> View Inventory Items</p>
+<p id = "heading"> Student Financial Information </p>
 <br>
 
 <form method="post">
 <div class="row">
 <div class="input-field col s6">
-   <input id="searchitem" type="text" name = "searchitem" class="validate">
-   <label for="searchitem">Search...</label>
+   <input id="id" type="text" name = "id" class="validate">
+   <label for="id">Search...</label>
  </div>
- <button class="btn waves-effect waves-light" type="submit" name="searchInventory">Search</button>
+ <button class="btn waves-effect waves-light" type="submit" name="searchFinancial">Search</button>
 </div>
 </form>
+
 
 <?php
 require_once('../../unsecure/processunsecure.php');
 ?>
+</body>
+</html>

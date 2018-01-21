@@ -31,6 +31,25 @@ else if (isset($_POST['addInventory']))
 {
   addInventory();
 }
+else if (isset($_POST['searchPersonal']))
+{
+  $id = $_POST['id'];
+  viewStudentPersonal($id);
+}
+else if (isset($_POST['searchHealth']))
+{
+  $id = $_POST['id'];
+  viewStudentHealth($id);
+}
+else if(isset($_POST['studentFinancial']))
+{
+  addFinancial();
+}
+elseif (isset($_POST['searchFinancial']))
+{
+  $id = $_POST['id'];
+  viewStudentFinancial($id);
+}
 
 
 //function to check if username is unique
@@ -358,7 +377,7 @@ function teacherLogin()
 //function to add a health condition to a student
 function enterCondition()
 {
-  $id = '3837';
+  $id = '7951';
   $condition = $_POST['condition'];
   $details = $_POST['details'];
 
@@ -413,6 +432,10 @@ function viewStudentPersonal($id)
   echo "Second Parent's Telephone Number: ". $results['parent2number']. '<br><br>';
   echo "Email address: ". $results['contactemail']. '<br><br>';
 }
+else
+{
+  echo "No Record Found with that ID";
+}
 }
 
 //function to view student health Information
@@ -435,20 +458,16 @@ function viewStudentHealth($id)
     echo $res['firstname'] . " " . $res['lastname'] . "'s health information: " . '<br><br>';
 
 //loop through and print all results with the specified ID
-
-    // $a = "";
-    // while ($a < count($results)) {
-    //   echo "Condition ID: " . $results['cid'].'<br><br>';
-    //   echo "Condition Name: ". $results['health_condition'].'<br><br>';
-    //   echo "Details: ". $results['details'].'<br><br>';
-    //   $a++;
-    // }
-    $length = count($results);
-    for ($i = 0; $i < $length; $i++) {
-      print $results[$i];
+    }
+    foreach ($results as $key => $value)
+    {
+      echo $key['cid'].'<br><br>';
+      echo $key['sid'].'<br><br>';
+      echo $key['health_condition'].'<br><br>';
+      echo $key['details'].'<br><br><br><br>';
     }
   }
-}
+
 
 //function to add inventory Item
 function addInventory()
@@ -509,7 +528,6 @@ function viewInventory()
 
   for ($i=0; $i < count($results); $i++) {
     echo "<tr>";
-    echo count($results);
     echo "<td>".$results['id']."</td>";
     echo "<td>".$results['item_name']."</td>";
     echo "<td>".$results['item_type']."</td>";
@@ -527,5 +545,79 @@ function viewInventory()
 // }
 echo "</table>";
 
+}
+
+//function to add financial information to a student's profile
+function addFinancial()
+{
+  $id = $_POST['id'];
+  $fees = $_POST['fees'];
+  $details = $_POST['details'];
+  $paid = $_POST['paid'];
+  $arrears = $fees - $paid;
+
+  $sql = "INSERT INTO financial(sid,bill,details,amount_paid,fees_arrears) VALUES ('$id','$fees','$details','$paid','$arrears')";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Financial Information for Student ID ". $id. " successfully entered.";
+  }
+  else
+  {
+    echo "Could not update financial information for Student ID number ".$id;
+  }
+}
+
+//function to view student financial information
+function viewStudentFinancial($id)
+{
+  $sql = "SELECT * FROM financial WHERE sid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $results = $login->fetch();
+
+  echo "<table>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th></tr>";
+
+  foreach ($results as $key => $value)
+  {
+    echo "<tr>";
+    echo "<td>".$value['fid']."</td>";
+    echo "<td>".$value['sid']."<td>";
+    echo "<td>".$value['bill']."</td>";
+    echo "<td>".$value['details']."</td>";
+    echo "<td>".$value['amount_paid']."</td>";
+    echo "<td>".$value['fees_arrears']."<td>";
+    echo "</tr>";
+  }
+  echo "<table>";
+}
+
+//function to search inventory
+function searchInventory()
+{
+  $searchitem = $_POST['searchitem'];
+
+  $sql = "SELECT * FROM inventory WHERE item_name = '$searchitem'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $results = $login->fetch();
+
+  for ($i=0; $i <count($results) ; $i++)
+  {
+    echo $results['id'];
+    echo $results['item_name'];
+    echo $results['item_type'];
+    echo $results['num_in_stock'];
+    echo $results['date_recorded'];
+  }
 }
  ?>
