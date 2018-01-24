@@ -23,12 +23,11 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 <p id = "heading"> Add Inventory Item</p>
-<br>
 
     <form method="post" action="" class ="col s8" id = "form">
       <?php require_once('processadmin.php');?>
       <div class="row">
-      <div class="input-field col s4">
+      <div class="input-field col s12">
          <input id="item_name" type="text" name = "item_name" class="validate">
          <label for="item_name">Item Name</label>
        </div>
@@ -44,21 +43,43 @@
         <option value="cleaning supplies">Cleaning Supplies</option>
         <option value="other">Other</option>
       </select>
-      <br><br>
 
-      If other, please enter the item type here. <br><br>
       <div class="row">
        <div class="input-field col s12">
           <input id="other" type="text" name = "other">
-          <label for="other">Other Item Type</label>
+          <label for="other">If other, please enter the item type here.</label>
         </div><br>
 
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s12">
          <input id="number" type="text" name = "number" class="validate">
-         <label for="number">Amount</label>
+         <label for="number">Number / Amount</label>
        </div>
      </div>
+
+     <label>Groupings: </label>
+      <select class="browser-default" name="grouping">
+        <option value="" disabled selected>Choose...</option>
+        <option value="singles">Singles</option>
+        <option value="boxes">Boxes</option>
+        <option value="packs">Packs</option>
+        <option value="bags">Bags</option>
+        <option value="other">Other</option>
+      </select>
+
+      <div class="row">
+       <div class="input-field col s12">
+          <input id="othergroup" type="text" name = "othergroup">
+          <label for="othergroup">If other, please enter the item grouping here.</label>
+        </div><br>
+
+        <div class="row">
+          <div class="input-field col s12">
+           <input id="total" type="text" name = "total" class="validate">
+           <label for="total">Total Number / Amount</label>
+         </div>
+       </div>
+
      <button class="btn waves-effect waves-light" type="submit" name="addInventory">Add to Database</button>
 
    </body>

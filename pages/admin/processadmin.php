@@ -137,6 +137,8 @@ function displayStudentPersonal()
   $ans = $login->query($sql2);
   $res = $login->fetch();
 
+if ($res)
+{
   echo "<table>";
 
   echo "<tr><th>Student ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Date of Birth</th><th>Age</th><th>Gender</th><th>Postal Address</th><th>Parent Name</th><th>Parent Number</th><th>Parent Name</th><th>Parent Number</th><th>Contact Email</th></tr>";
@@ -277,10 +279,13 @@ function addInventory()
   $item_type = $_POST['type'];
   $number = $_POST['number'];
   $other_type = $_POST['other'];
+  $group = $_POST['grouping'];
+  $other_group = $_POST['othergroup'];
+  $total = $_POST['total'];
 
-  if ($item_type == "other")
+  if ($item_type == "other" && $group == "other")
   {
-    $sql = "INSERT INTO inventory(item_name,item_type,num_in_stock) VALUES ('$item_name','$other_type','$number')";
+    $sql = "INSERT INTO inventory(item_name,item_type,grouping,num_in_stock,total) VALUES ('$item_name','$other_type','$other_group','$number','$total')";
 
     $login = new Connect;
 
@@ -288,16 +293,50 @@ function addInventory()
 
     if ($run)
     {
-      echo $number . " ". $item_name. "(s) Successfully Added to Inventory Database";
+      echo $number . " " . $other_group . " of ". $item_name. " successfully added to Inventory Database";
     }
     else
     {
-      echo "Error Occurred. Could not Add ". $number . " " . $item_name . "(s) to Database. Try Again";
+      echo "Error Occurred. Could not Add ". $number . " " . $other_group . " of ". $item_name. " to Database. Try Again";
+    }
+  }
+  else if ($item_type == "other" && $group != "other")
+  {
+    $sql = "INSERT INTO inventory(item_name,item_type,grouping,num_in_stock,total) VALUES ('$item_name','$other_type','$group','$number','$total')";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    if ($run)
+    {
+      echo $number . " " . $other_group . " of ". $item_name. " successfully added to Inventory Database";
+    }
+    else
+    {
+     echo "Error Occurred. Could not Add ". $number . " " . $other_group . " of ". $item_name. " to Database. Try Again";
+    }
+  }
+  else if ($item_type != "other" && $group == "other")
+  {
+    $sql = "INSERT INTO inventory(item_name,item_type,grouping,num_in_stock,total) VALUES ('$item_name','$item_type','$other_group','$number','$total')";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    if ($run)
+    {
+     echo $number . " " . $other_group . " of ". $item_name. " successfully added to Inventory Database";
+    }
+    else
+    {
+      echo "Error Occurred. Could not Add ". $number . " " . $other_group . " of ". $item_name. " to Database. Try Again";
     }
   }
   else
   {
-    $sql = "INSERT INTO inventory(item_name,item_type,num_in_stock) VALUES ('$item_name','$item_type','$number')";
+    $sql = "INSERT INTO inventory(item_name,item_type,grouping,num_in_stock,total) VALUES ('$item_name','$item_type','$group','$number','$total')";
 
     $login = new Connect;
 
@@ -305,11 +344,11 @@ function addInventory()
 
     if ($run)
     {
-      echo $number . " ". $item_name. "(s) Successfully Added to Inventory Database";
+      echo $number . " " . $other_group . " of ". $item_name. " successfully added to Inventory Database";
     }
     else
     {
-      echo "Error Occurred. Could not Add ". $number . " " . $item_name . "(s) to Database. Try Again";
+    echo "Error Occurred. Could not Add ". $number . " " . $other_group . " of ". $item_name. " to Database. Try Again";
     }
   }
 }
