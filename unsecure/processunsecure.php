@@ -9,15 +9,19 @@ if (isset($_POST['parentlogin']))
 }
 else if (isset($_POST['registerParent']))
 {
-  checkUsername();
+  checkUsernameP();
+}
+else if(isset($_POST['registerTeacher']))
+{
+  checkUsernameT();
 }
 else if (isset($_POST['teacherlogin']))
 {
   teachervalidateLogin();
 }
 
-//function to check if username is unique
-function checkUsername()
+//function to check if parent username is unique
+function checkUsernameP()
 {
   $username = $_POST['username'];
 
@@ -37,6 +41,30 @@ function checkUsername()
   {
     //if username is unique, go ahead and register user.
     checkMatch();
+  }
+}
+
+//function to check if parent username is unique
+function checkUsernameT()
+{
+  $username = $_POST['username'];
+
+  $check = new Connect;
+
+  $sql = "SELECT * FROM staffProfile WHERE username = '$username'";
+  //echo $sql;
+
+  $result = $check->query($sql);
+  $get = $check->fetch();
+
+  if ($get)
+  {
+     echo "Please choose another username. This one is already taken";
+  }
+  else
+  {
+    //if username is unique, go ahead and register user.
+    registerTeacher();
   }
 }
 
@@ -85,10 +113,12 @@ function registerParent()
   $username = $_POST['username'];
   $password = $_POST['password'];
   $studentid = $_POST['studentid'];
+  $type = "parent";
 
   // $passwordhash = password_hash($pwd, PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO parents(name,username,password,studentid) VALUES ('$name','$username','$password','$studentid')";
+  $sql = "INSERT INTO parents(name,username,studentid) VALUES ('$name','$username','$studentid')";
+  $sql2 = "INSERT INTO login(username,password,usertype) VALUES('$username','$password','$type')";
 
 // echo $sql;
   //new instance of database class
@@ -96,20 +126,23 @@ function registerParent()
 
   //execute query
   $run = $register->query($sql);
+  $run2 = $register->query($sql2);
 // var_dump($run);
 
   if($run)
   {
-    //if query works, redirect to login page
-    header("location: login.php");
-    //create popup window to show child's id.
+    if ($run2)
+    {
+      echo "Registration Successful";
+      //if query works, redirect to login page
+      header("location: parentLogin.php");
+    }
   }
   else
   {
     echo "Error occurred during registration";
   }
 }
-
 
 //function to validate parent login
 function parentvalidateLogin()
@@ -136,9 +169,9 @@ function parentvalidateLogin()
 //function to validate login
 function teachervalidateLogin()
 {
-  if (empty($_POST['staffid']))
+  if (empty($_POST['username']))
   {
-    echo "Please enter your Staff ID number";
+    echo "Please enter your username";
   }
   else if (empty($_POST['password']))
   {
@@ -158,9 +191,8 @@ function parentLogin()
     $username = $_POST['username'];
     $password = $_POST['password'];
     $studentid = $_POST['studentid'];
-    $_SESSION['studentid'] = $studentid;
 
-    $sql = "SELECT * FROM parents WHERE username = '$username' && password = '$password'";
+    $sql = "SELECT * FROM login WHERE username = '$username' && password = '$password'";
 
     //create new instance of database connection class
 
@@ -172,16 +204,54 @@ function parentLogin()
 
     if ($results)
     {
-      header("location:../parents/parentindex.php");
+      header("location: parentindex.php");
     }
+  }
+
+//function to register a teacher
+function registerTeacher()
+{
+  $id = rand(1,100);
+  $name = $_POST['name'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $number = $_POST['tel'];
+  $email = $_POST['email'];
+  $nextofkin = $_POST['nextofkin'];
+  $noknumber = $_POST['noknumber'];
+  $type = "teacher";
+
+  $sql = "INSERT INTO staffProfile(staffid,username,name,number,email,nextofkin,nextofkintelephone)
+  VALUES('$id','$username','$name','$number','$email','$nextofkin','$noknumber')";
+
+  $sql2 = "INSERT INTO login(username,password,usertype) VALUES('$username','$password','$type')";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $run2 = $login->query($sql2);
+
+  if ($run)
+  {
+    if ($run2)
+    {
+      header("location: teacherLogin.php");
+    }
+    else
+    {
+      echo "Error Occurred during registration";
+    }
+  }
+}
+
 
 //function to login teacher
 function teacherLogin()
 {
-  $staffid = $_POST['staffid'];
+  $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "SELECT * FROM staffProfile WHERE staffid = '$staffid' && password = '$password'";
+  $sql = "SELECT * FROM login WHERE username = '$username' && password = '$password'";
 
   //create new instance of database connection class
 
@@ -193,7 +263,7 @@ function teacherLogin()
 
   if ($results)
   {
-    echo "Successful Login With ID". " ". $staffid;
+    header("location: teacherindex.php");
   }
   else
   {

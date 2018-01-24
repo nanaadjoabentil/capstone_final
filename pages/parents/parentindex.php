@@ -23,15 +23,18 @@
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<p id = "heading"> Dashboard
+<p id = "heading"> Dashboard </p>
 <br>
 
 <?php
-
 require_once('../../unsecure/processunsecure.php');
-
-displayStudentPersonal();
  ?>
 
+Here, parents should be able to: <br><br>
+1. View and edit their children's biodata <BR><BR><BR>
+  2. VIiew their children's academic information <br><BR><BR>
+  3. View their children's health information <BR><BR><BR>
+    4. VIEW their children's behavioural info *** <BR><BR><BR>
+      5. VIEW THEIR children's financial information <BR><BR><BR>
 </body>
 </html>

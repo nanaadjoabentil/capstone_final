@@ -21,36 +21,53 @@
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<p id = "heading"> Register: Parents </p>
+<p id = "heading"> Register: Teachers </p>
 <br>
 
      <form method="post" action="" class ="col s8">
        <?php require_once('../../unsecure/processunsecure.php'); ?>
         <div class="row">
-         <div class="input-field col s4">
+         <div class="input-field col s12">
             <input id="name" type="text" name = "name" class="validate">
             <label for="name">Name</label>
           </div>
         </div>
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s12">
           <input id="username" type="text" name="username" class="validate">
           <label for="username">User Name</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s12">
           <input id="password" type="password" name="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s4">
-          <input id="studentid" type="text" name="studentid" class="validate">
-          <label for="studentid">Your Child's ID number</label>
+        <div class="input-field col s12">
+          <input id="tel" type="text" name="tel" class="validate">
+          <label for="tel">Telephone Number</label>
         </div>
       </div>
-      <button class="btn waves-effect waves-light" type="submit" name="registerParent">Register
-      </button>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="text" name="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="nextofkin" type="text" name="nextofkin" class="validate">
+          <label for="nextofkin">Next of Kin</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="noknumber" type="text" name="noknumber" class="validate">
+          <label for="noknumber">Next of Kin's Telephone Number</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="registerTeacher">Register</button>
    </body>
  </html>

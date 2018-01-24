@@ -29,8 +29,8 @@
        <?php require('../../unsecure/processunsecure.php');?>
        <div class="row">
        <div class="input-field col s4" id="username">
-          <input id="staffid" type="number" name = "staffid" class="validate">
-          <label for="staffid">Staff ID</label>
+          <input id="username" type="text" name = "username" class="validate">
+          <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
