@@ -36,8 +36,6 @@
 </form>
 
 
-<?php
-require_once('../../unsecure/processunsecure.php');
-?>
+<?php require_once('processadmin.php');?>
 </body>
 </html>

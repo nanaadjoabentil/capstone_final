@@ -25,7 +25,7 @@
 <br>
 
 <form method="post" action="" class ="col s8">
-  <?php require_once('../../unsecure/processunsecure.php'); ?>
+  <?php require_once('processadmin.php');?>
 
 <!-- get student id and store in a session so i can save it in the database -->
   <div class="row">

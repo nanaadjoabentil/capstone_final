@@ -27,7 +27,7 @@
 <br>
 
 <?php
-require_once('../../unsecure/processunsecure.php');
+ require_once('processadmin.php');
  ?>
 
 Welcome to the admin dashboard. <BR><BR>
