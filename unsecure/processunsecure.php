@@ -63,8 +63,8 @@ function checkUsernameT()
   }
   else
   {
-    //if username is unique, go ahead and register user.
-    registerTeacher();
+    //if username is unique, go ahead and validate registration form.
+    validateRegisterTeacher();
   }
 }
 
@@ -207,6 +207,27 @@ function parentLogin()
       header("location: parentindex.php");
     }
   }
+
+//function to validate teacher registration form
+function validateRegisterTeacher()
+{
+  $name = $_POST['name'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $number = $_POST['tel'];
+  $email = $_POST['email'];
+  $nextofkin = $_POST['nextofkin'];
+  $noknumber = $_POST['noknumber'];
+
+  if (empty($name || $username || $password || $number || $email || $nextofkin || $noknumber))
+  {
+    echo "All fields are required. Please fill all";
+  }
+  else
+  {
+    registerTeacher();
+  }
+}
 
 //function to register a teacher
 function registerTeacher()
