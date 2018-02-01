@@ -21,16 +21,16 @@
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<p id = "heading"> View Staff Profile </p>
+<p id = "heading"> View student Academic Information </p>
 <br>
 
 <form method="post">
 <div class="row">
 <div class="input-field col s6">
    <input id="id" type="text" name = "id" class="validate">
-   <label for="id">Search...</label>
+   <label for="id">Search by student ID</label>
  </div>
- <button class="btn waves-effect waves-light" type="submit" name="searchStaff">Search</button>
+ <button class="btn waves-effect waves-light" type="submit" name="viewAcademic">Search</button>
 </div>
 </form>
 
