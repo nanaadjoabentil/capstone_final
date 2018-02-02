@@ -36,6 +36,11 @@ elseif (isset($_POST['searchFinancial']))
   $id = $_POST['id'];
   viewStudentFinancial($id);
 }
+else if (isset($_POST['searchInventory']))
+{
+  $searchitem = $_POST['searchitem'];
+  searchInventory($searchitem);
+}
 
 
 //function for registering students
@@ -47,7 +52,6 @@ function registerStudent()
   $middlename = $_POST['middlename'];
   $lastname = $_POST['lastname'];
   $dob = $_POST['dob'];
-  $age = $_POST['age'];
   $gender = $_POST['group1'];
   $pobox = $_POST['pobox'];
   $parent1name = $_POST['parent1name'];
@@ -58,8 +62,8 @@ function registerStudent()
 
   // $passwordhash = password_hash($pwd, PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO student(id,firstname,middlename,lastname,dateofbirth,age,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail) VALUES
-  ('$id','$firstname','$middlename','$lastname','$dob','$age','$gender','$pobox','$parent1name','$parent1num','$parent2name','$parent2num','$email')";
+  $sql = "INSERT INTO student(id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail) VALUES
+  ('$id','$firstname','$middlename','$lastname','$dob','$gender','$pobox','$parent1name','$parent1num','$parent2name','$parent2num','$email')";
 
 // echo $sql;
   //new instance of database class
@@ -106,7 +110,7 @@ function adminLogin()
       $username = $_POST['username'];
       $password = $_POST['password'];
 
-      $sql = "SELECT * FROM admin WHERE username = '$username' && password = '$password'";
+      $sql = "SELECT * FROM login WHERE username = '$username' && password = '$password'";
 
       //create new instance of database connection class
 
@@ -119,7 +123,7 @@ function adminLogin()
       if ($results)
       {
         //echo "Successful Login as Admin";
-        header("location:../admin/adminindex.php");
+        header("location:adminindex.php");
       }
       else
       {
@@ -179,7 +183,7 @@ echo "</table>";
 //function to add a health condition to a student
 function enterCondition()
 {
-  $id = '3837';
+  $id = $_POST['id'];
   $condition = $_POST['condition'];
   $details = $_POST['details'];
 
@@ -363,15 +367,19 @@ function viewInventory()
   $run = $login->query($sql);
   $results = $login->fetch();
 
+echo "<br><br>";
   echo "<table>";
-  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Number in Stock</th></tr>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
 
   for ($i=0; $i < count($results); $i++) {
     echo "<tr>";
     echo "<td>".$results['id']."</td>";
     echo "<td>".$results['item_name']."</td>";
     echo "<td>".$results['item_type']."</td>";
+    echo "<td>".$results['grouping']."</td>";
     echo "<td>".$results['num_in_stock']."</td>";
+    echo "<td>".$results['total']."</td>";
+    echo "<td>".$results['date_recorded']."</td>";
     echo "</tr>";
   }
 //   foreach($results as $row)
@@ -440,25 +448,39 @@ function viewStudentFinancial($id)
 }
 
 //function to search inventory
-function searchInventory()
+function searchInventory($searchitem)
 {
-  $searchitem = $_POST['searchitem'];
-
-  $sql = "SELECT * FROM inventory WHERE item_name = '$searchitem'";
+  $sql = "SELECT * FROM inventory WHERE item_name LIKE '$searchitem'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
   $results = $login->fetch();
 
-  for ($i=0; $i <count($results) ; $i++)
-  {
-    echo $results['id'];
-    echo $results['item_name'];
-    echo $results['item_type'];
-    echo $results['num_in_stock'];
-    echo $results['date_recorded'];
+  echo "<table>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
+
+  for ($i=0; $i < count($results); $i++) {
+    echo "<tr>";
+    echo "<td>".$results['id']."</td>";
+    echo "<td>".$results['item_name']."</td>";
+    echo "<td>".$results['item_type']."</td>";
+    echo "<td>".$results['grouping']."</td>";
+    echo "<td>".$results['num_in_stock']."</td>";
+    echo "<td>".$results['total']."</td>";
+    echo "<td>".$results['date_recorded']."</td>";
+    echo "</tr>";
   }
+  // for ($i=0; $i <count($results) ; $i++)
+  // {
+  //   echo $results['id'];
+  //   echo $results['item_name'];
+  //   echo $results['item_type'];
+  //   echo $results['grouping'];
+  //   echo $results['num_in_stock'];
+  //   echo $results['total'];
+  //   echo $results['date_recorded'];
+  // }
 }
 
 ?>

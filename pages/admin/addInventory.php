@@ -1,40 +1,34 @@
 <!DOCTYPE html>
- <html>
-   <head>
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <!--Import materialize.css-->
-     <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="../../css/materialize.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="../../css/login.css"  media="screen,projection"/>
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min,js"></script>
 
-
-     <!--Let browser know website is optimized for mobile-->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
 
 <body>
-     <!--Import jQuery before materialize.js-->
-     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-     <script type="text/javascript" src="../../js/materialize.min.js"></script>
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<p id = "heading"> Add Inventory Items </p>
 
-<p id = "heading"> Add Inventory Item</p>
-
-    <form method="post" action="" class ="col s8" id = "form">
+    <form method="post" action="#" id="form">
       <?php require_once('processadmin.php');?>
-      <div class="row">
-      <div class="input-field col s12">
-         <input id="item_name" type="text" name = "item_name" class="validate">
-         <label for="item_name">Item Name</label>
-       </div>
-     </div>
 
-     <label>Item type: </label>
-      <select class="browser-default" name="type">
+      <div class="form-group">
+        <label for="item_name">Item Name:</label>
+        <input type="text" class="form-control" id="item_name" name="item_name" required>
+      </div>
+
+      <div class="form-group">
+      <label for="type">Item Type:</label>
+      <select class="form-control" id="type" name="type">
         <option value="" disabled selected>Choose...</option>
         <option value="stationery">Stationery</option>
         <option value="toiletries">Toiletries</option>
@@ -43,44 +37,41 @@
         <option value="cleaning supplies">Cleaning Supplies</option>
         <option value="other">Other</option>
       </select>
+    </div>
 
-      <div class="row">
-       <div class="input-field col s12">
-          <input id="other" type="text" name = "other">
-          <label for="other">If other, please enter the item type here.</label>
-        </div><br>
+    <div class="form-group">
+      <label for="other">If other, please enter the item type here:</label>
+      <input type="text" class="form-control" id="other" name="other">
+    </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-         <input id="number" type="text" name = "number" class="validate">
-         <label for="number">Number / Amount</label>
-       </div>
-     </div>
+    <div class="form-group">
+      <label for="number">Number / Amount:</label>
+      <input type="text" class="form-control" id="number" name="number" required>
+    </div>
 
-     <label>Groupings: </label>
-      <select class="browser-default" name="grouping">
-        <option value="" disabled selected>Choose...</option>
-        <option value="singles">Singles</option>
-        <option value="boxes">Boxes</option>
-        <option value="packs">Packs</option>
-        <option value="bags">Bags</option>
-        <option value="other">Other</option>
-      </select>
+    <div class="form-group">
+    <label for="grouping">Grouping:</label>
+    <select class="form-control" id="grouping" name="grouping">
+      <option value="" disabled selected>Choose...</option>
+      <option value="singles">Singles</option>
+      <option value="boxes">Boxes</option>
+      <option value="packs">Packs</option>
+      <option value="bags">Bags</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
 
-      <div class="row">
-       <div class="input-field col s12">
-          <input id="othergroup" type="text" name = "othergroup">
-          <label for="othergroup">If other, please enter the item grouping here.</label>
-        </div><br>
+  <div class="form-group">
+    <label for="othergroup">If other, please enter the item grouping here:</label>
+    <input type="text" class="form-control" id="othergroup" name="othergroup">
+  </div>
 
-        <div class="row">
-          <div class="input-field col s12">
-           <input id="total" type="text" name = "total" class="validate">
-           <label for="total">Total Number / Amount</label>
-         </div>
-       </div>
+  <div class="form-group">
+    <label for="total">Total Number / Amount:</label>
+    <input type="text" class="form-control" id="total" name="total" required>
+  </div>
 
-     <button class="btn waves-effect waves-light" type="submit" name="addInventory">Add to Database</button>
+  <button type="submit" class="btn btn-primary" name="addInventory">Add to Database</button>
 
    </body>
    </html>

@@ -1,5 +1,7 @@
 <?php
 
+require_once("../../database/connect.php");
+
 if (isset($_POST['searchStaff']))
 {
   $id = $_POST['id'];
@@ -176,13 +178,13 @@ function viewStaff($id)
 //function to add academic data of a student
 function addAcademic()
 {
-  $id = $_POST['sid'];
+  $id = $_POST['id'];
   $subject = $_POST['subject'];
   $grade = $_POST['grade'];
-  $teacher = $_POST['teacher'];
   $class = $_POST['class'];
   $term = $_POST['term'];
   $year = $_POST['year'];
+  $teacher = $_POST['teacher'];
 
   $login = new Connect;
 

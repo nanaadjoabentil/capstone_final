@@ -1,96 +1,88 @@
 <!DOCTYPE html>
- <html>
+ <html lang="en">
    <head>
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <!--Import materialize.css-->
-     <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="../../css/materialize.css"  media="screen,projection"/>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../css/bootstrap.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
      <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <script type="text/javascript" src="../js/bootstrap.js"></script>
+     <script type="text/javascript" src="../js/bootstrap.min,js"></script>
 
-
-     <!--Let browser know website is optimized for mobile-->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    </head>
 
-     <!--Import jQuery before materialize.js-->
-     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-     <script type="text/javascript" src="../../js/materialize.min.js"></script>
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
+   <body>
 <p id = "heading"> Register a Student </p>
 <br>
 
-     <form method="post" action="" class ="col s8">
+     <form method="post" action="#" id="form">
        <?php require_once('processadmin.php');?>
-        <div class="row">
-         <div class="input-field col s4">
-            <input id="firstname" type="text" name = "firstname" class="validate">
-            <label for="firstname">First Name</label>
-          </div>
-          <div class="input-field col s4">
-             <input id="middlename" type="text" name="middlename" class="validate">
-             <label for="middlename">Middle Name</label>
-           </div>
-          <div class="input-field col s4">
-          <input id="lastname" type="text" name="lastname" class="validate">
-          <label for="lastname">Last Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s4">
-          <input id="dob" type="text" placeholder="yyyy/mm/dd" name="dob" class="validate">
-          <label for="dob">Date of Birth</label>
-        </div>
-        <div class="input-field col s4">
-          <input id="age" type="number" name="age" class="validate">
-          <label for="age">Age</label>
-        </div>
-        <p>
-          Gender: <br>
-         <input name="group1" type="radio" id="genderM" value = "Male" class="with-gap"/>
-         <label for="genderM">Male</label>
-         <input name="group1" type="radio" id="genderF" value = "Female" class="with-gap"/>
-         <label for="genderF">Female</label>
-       </p>
-      </div>
-      <div class="row">
-        <div class="input-field col s4">
-          <input id="pobox" type="text" name="pobox" class="validate">
-          <label for="pobox">Postal Address</label>
-        </div>
-      </div>
-      Parent Info
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="parent1name" type="text" name="parent1name" class="validate">
-          <label for="parent1name">Parent Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="parent1num" type="text" name="parent1num" class="validate">
-          <label for="parent1num">Parent's Phone Number</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="parent2name" type="text" name="parent2name" class="validate">
-          <label for="parent2name">Parent 2 Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="parent2num" type="text" name="parent2num" class="validate">
-          <label for="parent2num">Parent 2 Phone Number</label>
-      </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s9">
-          <input id="email" type="email" name="email" class="validate">
-          <label for="email">Contact Email</label>
-        </div>
-      </div>
-      <button class="btn waves-effect waves-light" type="submit" name="registerStudent" onclick="registerStudent()">Register
-      </button>
+
+       <div class="form-group">
+         <label for="firstname">First Name:</label>
+         <input type="text" class="form-control" id="firstname" name="firstname" required>
+       </div>
+
+       <div class="form-group">
+         <label for="middlename">Middle Name:</label>
+         <input type="text" class="form-control" id="middlename" name="middlename" required>
+       </div>
+
+       <div class="form-group">
+         <label for="lastname">Last Name:</label>
+         <input type="text" class="form-control" id="lastname" name="lastname" required>
+       </div>
+
+       <div class="form-group">
+         <label for="dob">Date of Birth:</label>
+         <input type="date" class="form-control" placeholder="yyyy/mm/dd" id="dob" name="dob" required>
+       </div>
+
+       <p>
+         Gender: <br>
+        <input name="group1" type="radio" id="genderM" value = "Male" required/>
+        <label for="genderM">Male</label>
+        <input name="group1" type="radio" id="genderF" value = "Female" required/>
+        <label for="genderF">Female</label>
+      </p>
+
+       <div class="form-group">
+         <label for="pobox">Postal Address:</label>
+         <input type="text" class="form-control" id="pobox" name="pobox" required>
+       </div>
+
+       <div class="form-group">
+         <label for="parent1name">First Parent / Guardian's Name:</label>
+         <input type="text" class="form-control" id="parent1name" name="parent1name" required>
+       </div>
+
+       <div class="form-group">
+         <label for="parent1num">First Parent / Guardian's Phone Number:</label>
+         <input type="text" class="form-control" id="parent1num" name="parent1num" required>
+       </div>
+
+       <div class="form-group">
+         <label for="parent2name">Second Parent / Guardian's Name:</label>
+         <input type="text" class="form-control" id="parent2name" name="parent2name">
+       </div>
+
+       <div class="form-group">
+         <label for="parent2num">Second Parent / Guardian's Phone Number:</label>
+         <input type="text" class="form-control" id="parent2num" name="parent2num">
+       </div>
+
+       <div class="form-group">
+         <label for="email">Contact Email:</label>
+         <input type="email" class="form-control" id="email" name="email">
+       </div>
+
+
+
+      <button type="submit" class="btn btn-primary" name="registerStudent">Register</button>
+
    </body>
  </html>
