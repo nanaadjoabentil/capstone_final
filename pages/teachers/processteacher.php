@@ -4,8 +4,8 @@ require_once("../../database/connect.php");
 
 if (isset($_POST['searchStaff']))
 {
-  $id = $_POST['id'];
-  viewStaff($id);
+  $term = $_POST['id'];
+  viewStaff($term);
 }
 else if(isset($_POST['registerTeacher']))
 {
@@ -153,24 +153,42 @@ function teacherLogin()
 }
 
 //function to view staff information
-function viewStaff($id)
+function viewStaff($term)
 {
-  $sql = "SELECT staffid,username,name,number,email,nextofkin,nextofkintelephone FROM staffProfile WHERE staffid = '$id'";
+  $sql = "SELECT staffid,username,name,number,email,nextofkin,nextofkintelephone FROM staffProfile WHERE name LIKE '%$term%'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
+  echo $sql;
   $results = $login->fetch();
 
   if($results)
   {
-      echo "Staff ID: " . $results['staffid'] . '<br><br>';
-      echo "Username: " . $results['username'] . '<br><br>';
-      echo "Name: " . $results['name'] . '<br><br>';
-      echo "Number: " . $results['number'] . '<br><br>';
-      echo "Email: " . $results['email'] . '<br><br>';
-      echo "Next of Kin: " . $results['nextofkin'] . '<br><br>';
-      echo "Next of Kin Telephone Number: " . $results['nextofkintelephone'] . '<br><br>';
+    // echo '<br><br>';
+    //   echo "Staff ID: " . $results['staffid'] . '<br><br>';
+    //   echo "Username: " . $results['username'] . '<br><br>';
+    //   echo "Name: " . $results['name'] . '<br><br>';
+    //   echo "Number: " . $results['number'] . '<br><br>';
+    //   echo "Email: " . $results['email'] . '<br><br>';
+    //   echo "Next of Kin: " . $results['nextofkin'] . '<br><br>';
+    //   echo "Next of Kin Telephone Number: " . $results['nextofkintelephone'] . '<br><br>';
+    echo '<Br><br><br>';
+    echo "<table>";
+    echo "<tr><th>Staff ID</th><th>Username</th><th>Name</th><th>Number</th><th>Email</th><th>Next of Kin</th><th>Next of Kin Contact</th></tr>";
+    while ($results = $login->fetch())
+    {
+      echo "<tr>";
+      echo "<td>".$results['staffid']."</td>";
+      echo "<td>".$results['username']."</td>";
+      echo "<td>".$results['name']."</td>";
+      echo "<td>".$results['number']."</td>";
+      echo "<td>".$results['email']."</td>";
+      echo "<td>".$results['nextofkin']."</td>";
+      echo "<td>".$results['nextofkintelephone']."</td>";
+      echo "</tr>";
+    }
+    echo "</table>";
   }
 }
 
@@ -211,16 +229,37 @@ function viewStudentAcademic($id)
 
   $run = $login->query($sql);
   $results = $login->fetch();
+  $tid = $results['teacher'];
 
   if($results)
   {
-      echo "Student ID: " . $results['sid'] . '<br><br>';
-      echo "Subject: " . $results['subject'] . '<br><br>';
-      echo "Teacher ID: " . $results['teacher'] . '<br><br>';
-      echo "Grade: " . $results['grade'] . '<br><br>';
-      echo "Class: " . $results['class'] . '<br><br>';
-      echo "Term: " . $results['term'] . '<br><br>';
-      echo "Year: " . $results['year'] . '<br><br>';
+    echo "<table>";
+    echo "<tr><th>Student ID</th><th>Subject Name</th><th>Teacher's Name</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
+
+    while ($results = $login->fetch())
+    {
+      $sql2 = "SELECT name FROM staffProfile WHERE staffid = '$tid'";
+      $run2 = $login->query($sql2);
+      $ans = $login->fetch();
+      //try and display teacher's names instead of ids.
+      echo "<tr>";
+      echo "<td>".$results['sid']."</td>";
+      echo "<td>".$results['subject']."</td>";
+      echo "<td>".$ans['name']."</td>";
+      echo "<td>".$results['grade']."</td>";
+      echo "<td>".$results['class']."</td>";
+      echo "<td>".$results['term']."</td>";
+      echo "<td>".$results['year']."</td>";
+      echo "</tr>";
+    }
+    echo '</table>';
+      // echo "Student ID: " . $results['sid'] . '<br><br>';
+      // echo "Subject: " . $results['subject'] . '<br><br>';
+      // echo "Teacher ID: " . $results['teacher'] . '<br><br>';
+      // echo "Grade: " . $results['grade'] . '<br><br>';
+      // echo "Class: " . $results['class'] . '<br><br>';
+      // echo "Term: " . $results['term'] . '<br><br>';
+      // echo "Year: " . $results['year'] . '<br><br>';
   }
 }
 ?>

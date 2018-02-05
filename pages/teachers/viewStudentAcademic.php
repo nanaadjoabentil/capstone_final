@@ -21,7 +21,7 @@
 
 <form method="post" id="form">
   <div class="form-group">
-    <label for="id">Search...</label>
+    <label for="id">Search by Student ID Number</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 

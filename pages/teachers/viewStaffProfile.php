@@ -19,8 +19,8 @@
 
 <form method="post" action="#" id="form">
 
-<  <div class="form-group">
-    <label for="id">Search...</label>
+ <div class="form-group">
+    <label for="id">Search for staff by ID or firstname</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
