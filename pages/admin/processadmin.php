@@ -249,31 +249,34 @@ else
 function viewStudentHealth($id)
 {
   $sql = "SELECT * FROM health_conditions WHERE sid = '$id'";
+  $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
+  $run2 = $login->query($sql2);
 
   $results = $login->fetch();
+  $results2 = $login->fetch();
 
-  if ($results)
-  {
-    $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
-    $ans = $login->query($sql2);
-    $res = $login->fetch();
+  // if ($results)
+  // {
+    // if ($results2)
+    // {
+    //   echo $results2['firstname'] . " " . $results2['lastname'] . "'s health information: " . '<br><br>';
 
-    echo $res['firstname'] . " " . $res['lastname'] . "'s health information: " . '<br><br>';
+        //loop through and print all results with the specified ID
 
-//loop through and print all results with the specified ID
-    }
-    foreach ($results as $key => $value)
-    {
-      echo $key['cid'].'<br><br>';
-      echo $key['sid'].'<br><br>';
-      echo $key['health_condition'].'<br><br>';
-      echo $key['details'].'<br><br><br><br>';
-    }
-  }
+      while ($results = $login->fetch())
+      {
+        echo $results['cid'].'<br><br>';
+        echo $results['sid'].'<br><br>';
+        echo $results['health_condition'].'<br><br>';
+        echo $results['details'].'<br><br><br><br>';
+      }
+  //}
+//}
+}
 
 
 //function to add inventory Item
@@ -371,26 +374,18 @@ echo "<br><br>";
   echo "<table>";
   echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
 
-  for ($i=0; $i < count($results); $i++) {
-    echo "<tr>";
-    echo "<td>".$results['id']."</td>";
-    echo "<td>".$results['item_name']."</td>";
-    echo "<td>".$results['item_type']."</td>";
-    echo "<td>".$results['grouping']."</td>";
-    echo "<td>".$results['num_in_stock']."</td>";
-    echo "<td>".$results['total']."</td>";
-    echo "<td>".$results['date_recorded']."</td>";
-    echo "</tr>";
-  }
-//   foreach($results as $row)
-//   {
-//     echo "<tr>";
-//     echo "<td>".$row['id']."</td>";
-//     echo "<td>".$row['item_name']."</td>";
-//     echo "<td>".$row['item_type']."</td>";
-//     echo "<td>".$row['num_in_stock']."</td>";
-//     echo "</tr>";
-// }
+while ($results = $login->fetch())
+{
+  echo "<tr>";
+  echo "<td>".$results['id']."</td>";
+  echo "<td>".$results['item_name']."</td>";
+  echo "<td>".$results['item_type']."</td>";
+  echo "<td>".$results['grouping']."</td>";
+  echo "<td>".$results['num_in_stock']."</td>";
+  echo "<td>".$results['total']."</td>";
+  echo "<td>".$results['date_recorded']."</td>";
+  echo "</tr>";
+}
 echo "</table>";
 
 }
@@ -433,15 +428,15 @@ function viewStudentFinancial($id)
   echo "<table>";
   echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th></tr>";
 
-  foreach ($results as $key => $value)
+  while ($results = $login->fetch())
   {
     echo "<tr>";
-    echo "<td>".$value['fid']."</td>";
-    echo "<td>".$value['sid']."<td>";
-    echo "<td>".$value['bill']."</td>";
-    echo "<td>".$value['details']."</td>";
-    echo "<td>".$value['amount_paid']."</td>";
-    echo "<td>".$value['fees_arrears']."<td>";
+    echo "<td>".$results['fid']."</td>";
+    echo "<td>".$results['sid']."<td>";
+    echo "<td>".$results['bill']."</td>";
+    echo "<td>".$results['details']."</td>";
+    echo "<td>".$results['amount_paid']."</td>";
+    echo "<td>".$results['fees_arrears']."<td>";
     echo "</tr>";
   }
   echo "<table>";
@@ -460,7 +455,8 @@ function searchInventory($searchitem)
   echo "<table>";
   echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
 
-  for ($i=0; $i < count($results); $i++) {
+  while ($results = $login->fetch())
+  {
     echo "<tr>";
     echo "<td>".$results['id']."</td>";
     echo "<td>".$results['item_name']."</td>";
@@ -471,16 +467,6 @@ function searchInventory($searchitem)
     echo "<td>".$results['date_recorded']."</td>";
     echo "</tr>";
   }
-  // for ($i=0; $i <count($results) ; $i++)
-  // {
-  //   echo $results['id'];
-  //   echo $results['item_name'];
-  //   echo $results['item_type'];
-  //   echo $results['grouping'];
-  //   echo $results['num_in_stock'];
-  //   echo $results['total'];
-  //   echo $results['date_recorded'];
-  // }
 }
 
 ?>

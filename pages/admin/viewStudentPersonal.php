@@ -1,39 +1,35 @@
 <!DOCTYPE html>
- <html>
-   <head>
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <!--Import materialize.css-->
-     <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="../../css/materialize.css"  media="screen,projection"/>
-     <link type="text/css" rel="stylesheet" href="../../css/login.css"  media="screen,projection"/>
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min,js"></script>
 
-
-     <!--Let browser know website is optimized for mobile-->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
 
 <body>
-     <!--Import jQuery before materialize.js-->
-     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-     <script type="text/javascript" src="../../js/materialize.min.js"></script>
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
+  
 <p id = "heading"> Student Personal Information </p>
 <br>
 
-<form method="post">
-<div class="row">
-<div class="input-field col s6">
-   <input id="id" type="text" name = "id" class="validate">
-   <label for="id">Search...</label>
+<form method="post" id="form">
+
+  <div class="form-group">
+    <label for="id">Search:</label>
+    <input type="text" class="form-control" id="id" name="id">
+  </div>
+ <button type="submit" class="btn btn-primary" name="searchPersonal">Search</button>
+
  </div>
- <button class="btn waves-effect waves-light" type="submit" name="searchPersonal">Search</button>
-</div>
-</form>
+ </form>
 
 <?php require_once('processadmin.php');?>
 </body>
