@@ -368,7 +368,7 @@ function viewInventory()
   $login = new Connect;
 
   $run = $login->query($sql);
-  $results = $login->fetch();
+  // $results = $login->fetch();
 
 echo "<br><br>";
   echo "<table>";
@@ -419,17 +419,18 @@ function addFinancial()
 function viewStudentFinancial($id)
 {
   $sql = "SELECT * FROM financial WHERE sid = '$id'";
+  $sql2 = "SELECT SUM(fees_arrears) as totalArrears FROM financial WHERE sid= '$id'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
-  $results = $login->fetch();
 
-  echo "<table>";
+  echo "<table class=>";
   echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th></tr>";
 
   while ($results = $login->fetch())
   {
+    echo "<br>";
     echo "<tr>";
     echo "<td>".$results['fid']."</td>";
     echo "<td>".$results['sid']."<td>";
@@ -440,17 +441,22 @@ function viewStudentFinancial($id)
     echo "</tr>";
   }
   echo "<table>";
+  $run2 = $login->query($sql2);
+  $ans = $login->fetch();
+  echo "<br>";
+  echo "TOTAL ARREARS = GHS " .$ans['totalArrears'];
 }
 
 //function to search inventory
 function searchInventory($searchitem)
 {
-  $sql = "SELECT * FROM inventory WHERE item_name LIKE '$searchitem'";
+  $sql = "SELECT * FROM inventory WHERE item_type LIKE '%$searchitem%'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
-  $results = $login->fetch();
+  echo $sql;
+  // $results = $login->fetch();
 
   echo "<table>";
   echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
