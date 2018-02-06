@@ -36,11 +36,7 @@ elseif (isset($_POST['searchFinancial']))
   $id = $_POST['id'];
   viewStudentFinancial($id);
 }
-else if (isset($_POST['searchInventory']))
-{
-  $searchitem = $_POST['searchitem'];
-  searchInventory($searchitem);
-}
+
 
 
 //function for registering students
@@ -259,12 +255,6 @@ function viewStudentHealth($id)
   $results = $login->fetch();
   $results2 = $login->fetch();
 
-  // if ($results)
-  // {
-    // if ($results2)
-    // {
-    //   echo $results2['firstname'] . " " . $results2['lastname'] . "'s health information: " . '<br><br>';
-
         //loop through and print all results with the specified ID
 
       while ($results = $login->fetch())
@@ -360,6 +350,14 @@ function addInventory()
   }
 }
 
+if (isset($_POST['searchInventory']) && !empty($_POST['searchitem']))
+{
+  searchInventory($_POST['searchitem']);
+}
+else
+{
+  viewInventory();
+}
 //function to view inventoru Items
 function viewInventory()
 {
@@ -372,7 +370,7 @@ function viewInventory()
 
 echo "<br><br>";
   echo "<table>";
-  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
 
 while ($results = $login->fetch())
 {
@@ -387,7 +385,33 @@ while ($results = $login->fetch())
   echo "</tr>";
 }
 echo "</table>";
+}
 
+//function to search inventory
+function searchInventory($searchitem)
+{
+  $sql = "SELECT * FROM inventory WHERE item_type LIKE '%$searchitem%'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<br>";
+  echo "<table>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['id']."</td>";
+    echo "<td>".$results['item_name']."</td>";
+    echo "<td>".$results['item_type']."</td>";
+    echo "<td>".$results['grouping']."</td>";
+    echo "<td>".$results['num_in_stock']."</td>";
+    echo "<td>".$results['total']."</td>";
+    echo "<td>".$results['date_recorded']."</td>";
+    echo "</tr>";
+  }
 }
 
 //function to add financial information to a student's profile
@@ -447,32 +471,6 @@ function viewStudentFinancial($id)
   echo "TOTAL ARREARS = GHS " .$ans['totalArrears'];
 }
 
-//function to search inventory
-function searchInventory($searchitem)
-{
-  $sql = "SELECT * FROM inventory WHERE item_type LIKE '%$searchitem%'";
 
-  $login = new Connect;
-
-  $run = $login->query($sql);
-  echo $sql;
-  // $results = $login->fetch();
-
-  echo "<table>";
-  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date Recorded</th></tr>";
-
-  while ($results = $login->fetch())
-  {
-    echo "<tr>";
-    echo "<td>".$results['id']."</td>";
-    echo "<td>".$results['item_name']."</td>";
-    echo "<td>".$results['item_type']."</td>";
-    echo "<td>".$results['grouping']."</td>";
-    echo "<td>".$results['num_in_stock']."</td>";
-    echo "<td>".$results['total']."</td>";
-    echo "<td>".$results['date_recorded']."</td>";
-    echo "</tr>";
-  }
-}
 
 ?>

@@ -5,20 +5,12 @@
   font-size: 200%;
 }
 
-body{
-width: 98%;
-}
-
 tr th
 {
     background-color: #A3D1FF;
     width: 98%;
 }
 
-td
-{
-  background-color: green;
-}
 
 /* label color */
    .input-field label {
