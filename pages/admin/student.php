@@ -2,17 +2,20 @@
 <html>
 <head>
   <title> Student Page </title>
+  <link rel="stylesheet" href="../../css/dashboard.css">
 </head>
 <body>
   <nav>
     <ul>
-      <li><a href="registerStudentPersonal.php">Add a New Student</a></li>
-      <li><a href="registerStudentHealth.php">Add Student's Health Information</a></li>
-      <li><a href="registerStudentFinancial.php">Add Student Financial Information</a></li>
-      <li><a href="../teachers/viewStudentAcademic.php">View Student Academic Information</a></li>
-      <li><a href="viewStudentHealth.php">View Student Health Information</a></li>
-      <li><a href="viewStudentFinancial.php">View Student Financial Information</a></li>
-      <li><a href="viewStudentPersonal.php">View Student Personal Information</a></li>
+      <a href="registerStudentPersonal.php"><button id="dbutton"><img src="../../images/plus.png"><br><br>Add a New Student</button></a>
+      <a href="registerStudentHealth.php"><button id="dbutton"><img src="../../images/plus.png">Add Student's Health Information</button></a>
+      <a href="registerStudentFinancial.php"><button id="dbutton"><img src="../../images/plus.png">Add Student Financial Information</button></a>
+      <a href="../teachers/viewStudentAcademic.php"><button id="dbutton">View Student Academic Information</button></a>
+      <a href="viewStudentHealth.php"><button id="dbutton">View Student Health Information</button></a>
+      <a href="viewStudentFinancial.php"><button id="dbutton">View Student Financial Information</button></a>
+      <a href="viewStudentPersonal.php"><button id="dbutton">View Student Personal Information</button></a>
+      <a href="updateStudentPersonal.php"><button id="dbutton">Update Student Personal Information</button></a>
+      <a href="updateStudentHealth.php"><button id="dbutton">Update Student Health Information</button></a>
     </ul>
   </nav>
 </body>

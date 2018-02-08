@@ -13,29 +13,29 @@ tr th
 
 
 /* label color */
-   .input-field label {
+   /* .input-field label {
      color: #A3D1FF;
-   }
+   } */
    /* label focus color */
-   .input-field input[type=text]:focus + label {
+   /* .input-field input[type=text]:focus + label {
      color: #A3D1FF;
-   }
+   } */
    /* label underline focus color */
-   .input-field input[type=text]:focus {
+   /* .input-field input[type=text]:focus {
      border-bottom: 1px solid #A3D1FF;
      box-shadow: 0 1px 0 0 #A3D1FF;
-   }
+   } */
    /* valid color */
-   .input-field input[type=text].valid {
+   /* .input-field input[type=text].valid {
      border-bottom: 1px solid #A3D1FF;
      box-shadow: 0 1px 0 0 #A3D1FF;
-   }
+   } */
    /* invalid color */
-   .input-field input[type=text].invalid {
+   /* .input-field input[type=text].invalid {
      border-bottom: 1px solid #A3D1FF;
      box-shadow: 0 1px 0 0 #A3D1FF;
-   }
+   } */
    /* icon prefix focus color */
-   .input-field .prefix.active {
+   /* .input-field .prefix.active {
      color: #A3D1FF;
-   }
+   } */
