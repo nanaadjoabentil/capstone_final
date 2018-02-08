@@ -16,7 +16,7 @@
   </head>
 
 <body>
-  
+
 <p id = "heading"> Student Personal Information </p>
 <br>
 
@@ -26,11 +26,24 @@
     <label for="id">Search:</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
- <button type="submit" class="btn btn-primary" name="searchPersonal">Search</button>
+ <button type="submit" class="btn btn-primary" name="searchPersonal">Search</button><br><br>
 
  </div>
  </form>
 
-<?php require_once('processadmin.php');?>
+<?php require_once('processadmin.php');
+
+//if search button has been clicked and the form field is not empty, search.
+if (isset($_POST['searchPersonal']) && !empty($_POST['id']))
+{
+  viewStudentPersonal($_POST['id']);
+}
+else
+{
+  //if not, view all students.
+  viewAllStudents();
+}
+
+?>
 </body>
 </html>

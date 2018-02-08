@@ -134,17 +134,6 @@ function registerStudent()
   }
 }
 
-//if search button has been clicked and the form field is not empty, search.
-if (isset($_POST['searchPersonal']) && !empty($_POST['id']))
-{
-  viewStudentPersonal($_POST['id']);
-}
-else
-{
-  //if not, view all students.
-  viewAllStudents();
-}
-
 //function to view all students
 function viewAllStudents()
 {
@@ -397,15 +386,6 @@ function addInventory()
     echo "Error Occurred. Could not Add ". $number . " " . $other_group . " of ". $item_name. " to Database. Try Again";
     }
   }
-}
-
-if (isset($_POST['searchInventory']) && !empty($_POST['searchitem']))
-{
-  searchInventory($_POST['searchitem']);
-}
-else
-{
-  viewInventory();
 }
 
 //function to view inventoru Items

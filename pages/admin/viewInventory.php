@@ -35,6 +35,16 @@
 
 <?php
 require_once('processadmin.php');
+
+if (isset($_POST['searchInventory']) && !empty($_POST['searchitem']))
+{
+  searchInventory($_POST['searchitem']);
+}
+else
+{
+  viewInventory();
+}
+
 ?>
 
 </body>
