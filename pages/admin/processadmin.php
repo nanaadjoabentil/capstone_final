@@ -144,6 +144,7 @@ else
   //if not, view all students.
   viewAllStudents();
 }
+
 //function to view all students
 function viewAllStudents()
 {
