@@ -228,24 +228,26 @@ function viewStudentAcademic($id)
   $login = new Connect;
 
   $run = $login->query($sql);
-  $results = $login->fetch();
-  $tid = $results['teacher'];
+  // $results = $login->fetch();
+  // $tid = $results['teacher'];
 
-  if($results)
-  {
+  // if($results)
+  // {
+    echo "<br>";
     echo "<table>";
     echo "<tr><th>Student ID</th><th>Subject Name</th><th>Teacher's Name</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
 
     while ($results = $login->fetch())
     {
-      $sql2 = "SELECT name FROM staffProfile WHERE staffid = '$tid'";
-      $run2 = $login->query($sql2);
-      $ans = $login->fetch();
+      // $sql2 = "SELECT name FROM staffProfile WHERE staffid = '$tid'";
+      // $run2 = $login->query($sql2);
+      // $ans = $login->fetch();
       //try and display teacher's names instead of ids.
       echo "<tr>";
       echo "<td>".$results['sid']."</td>";
       echo "<td>".$results['subject']."</td>";
-      echo "<td>".$ans['name']."</td>";
+      // echo "<td>".$ans['name']."</td>";
+      echo "<td>".$results['teacher']."</td>";
       echo "<td>".$results['grade']."</td>";
       echo "<td>".$results['class']."</td>";
       echo "<td>".$results['term']."</td>";
@@ -260,6 +262,6 @@ function viewStudentAcademic($id)
       // echo "Class: " . $results['class'] . '<br><br>';
       // echo "Term: " . $results['term'] . '<br><br>';
       // echo "Year: " . $results['year'] . '<br><br>';
-  }
+//  }
 }
 ?>

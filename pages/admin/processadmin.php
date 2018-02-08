@@ -36,51 +36,13 @@ elseif (isset($_POST['searchFinancial']))
   $id = $_POST['id'];
   viewStudentFinancial($id);
 }
-
-
-
-//function for registering students
-function registerStudent()
+elseif (isset($_POST['deleteStudent']))
 {
-  //get form fields from webpage
-  $id = rand(10,10000);
-  $firstname = $_POST['firstname'];
-  $middlename = $_POST['middlename'];
-  $lastname = $_POST['lastname'];
-  $dob = $_POST['dob'];
-  $gender = $_POST['group1'];
-  $pobox = $_POST['pobox'];
-  $parent1name = $_POST['parent1name'];
-  $parent1num = $_POST['parent1num'];
-  $parent2name = $_POST['parent2name'];
-  $parent2num = $_POST['parent2num'];
-  $email = $_POST['email'];
-
-  // $passwordhash = password_hash($pwd, PASSWORD_DEFAULT);
-
-  $sql = "INSERT INTO student(id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail) VALUES
-  ('$id','$firstname','$middlename','$lastname','$dob','$gender','$pobox','$parent1name','$parent1num','$parent2name','$parent2num','$email')";
-
-// echo $sql;
-  //new instance of database class
-  $register = new Connect;
-
-  //execute query
-  $run = $register->query($sql);
-// var_dump($run);
-
-  if($run)
-  {
-    echo $firstname." ". $lastname."'s' student ID is". " ".$id;
-    //if query works, redirect to login page
-    // header("location: index.php");
-    //create popup window to show child's id.
-  }
-  else
-  {
-    echo "Error occurred during registration";
-  }
+  $id = $_POST['id'];
+  deleteStudent($id);
 }
+
+//------------------------LOGIN FUNCTIONS--------------------------------------------------------
 
 //function to validate admin login
 function adminvalidateLogin()
@@ -127,84 +89,94 @@ function adminLogin()
       }
 }
 
-function displayStudentPersonal()
+//-----------------------------STUDENT PERSONAL FUNCTIONS----------------------------------------------------
+
+//function for registering students
+function registerStudent()
 {
-  $studentid = $_SESSION['studentid'];
-  $sql2 = "SELECT * FROM student WHERE id = '$studentid'";
+  //get form fields from webpage
+  $id = rand(10,10000);
+  $firstname = $_POST['firstname'];
+  $middlename = $_POST['middlename'];
+  $lastname = $_POST['lastname'];
+  $dob = $_POST['dob'];
+  $gender = $_POST['group1'];
+  $pobox = $_POST['pobox'];
+  $parent1name = $_POST['parent1name'];
+  $parent1num = $_POST['parent1num'];
+  $parent2name = $_POST['parent2name'];
+  $parent2num = $_POST['parent2num'];
+  $email = $_POST['email'];
 
-  $login = new Connect;
+  // $passwordhash = password_hash($pwd, PASSWORD_DEFAULT);
 
-  $ans = $login->query($sql2);
-  $res = $login->fetch();
+  $sql = "INSERT INTO student(id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail) VALUES
+  ('$id','$firstname','$middlename','$lastname','$dob','$gender','$pobox','$parent1name','$parent1num','$parent2name','$parent2num','$email')";
 
-if ($res)
-{
-  echo "<table>";
-
-  echo "<tr><th>Student ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Date of Birth</th><th>Age</th><th>Gender</th><th>Postal Address</th><th>Parent Name</th><th>Parent Number</th><th>Parent Name</th><th>Parent Number</th><th>Contact Email</th></tr>";
-
-$id = $res['id'];
-$firstname = $res['firstname'];
-$middlename = $res['middlename'];
-$lastname = $res['lastname'];
-$dateofbirth = $res['dateofbirth'];
-$age = $res['age'];
-$gender = $res['gender'];
-$postaladdress = $res['postaladdress'];
-$parent1name = $res['parent1name'];
-$parent1number = $res['parent1number'];
-$parent2name = $res['parent2name'];
-$parent2number = $res['parent2number'];
-$contactemail = $res['contactemail'];
-
-echo "<tr>";
-echo "<td>".$id."</td>";
-echo "<td>".$firstname."</td>";
-echo "<td>".$middlename."</td>";
-echo "<td>".$lastname."</td>";
-echo "<td>".$dateofbirth."</td>";
-echo "<td>".$age."</td>";
-echo "<td>".$gender."</td>";
-echo "<td>".$postaladdress."</td>";
-echo "<td>".$parent1name."</td>";
-echo "<td>".$parent1number."</td>";
-echo "<td>".$parent2name."</td>";
-echo "<td>".$parent2number."</td>";
-echo "<td>".$contactemail."</td>";
-echo "</tr>";
-}
-echo "</table>";
-}
-
-//function to add a health condition to a student
-function enterCondition()
-{
-  $id = $_POST['id'];
-  $condition = $_POST['condition'];
-  $details = $_POST['details'];
-
-  $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
-  // $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
-
+// echo $sql;
   //new instance of database class
-
-  $login = new Connect;
+  $register = new Connect;
 
   //execute query
-  $run = $login->query($sql);
+  $run = $register->query($sql);
+// var_dump($run);
 
-  if ($run)
+  if($run)
   {
-    echo "Condition name: ". $condition . ", " ."successfully added to ID: ". $id;
+    echo $firstname." ". $lastname."'s' student ID is". " ".$id;
+    //if query works, redirect to login page
+    header("location: adminindex.php");
+    //create popup window to show child's id.
   }
   else
   {
-    echo "Condition name: ". $condition . ", " . "Not added. Try again";
+    echo "Error occurred during registration";
   }
 }
 
+//if search button has been clicked and the form field is not empty, search.
+if (isset($_POST['searchPersonal']) && !empty($_POST['id']))
+{
+  viewStudentPersonal($_POST['id']);
+}
+else
+{
+  //if not, view all students.
+  viewAllStudents();
+}
+//function to view all students
+function viewAllStudents()
+{
+  $sql = "SELECT id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail FROM student";
 
-//function to fetch student information to be viewed
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  // echo "<br><br>";
+  echo "<table>";
+  echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Date of Birth</th><th>Gender</th><th>Postal Address</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Contact Email</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['id']."</td>";
+    echo "<td>".$results['firstname']."</td>";
+    echo "<td>".$results['middlename']."</td>";
+    echo "<td>".$results['lastname']."</td>";
+    echo "<td>".$results['dateofbirth']."</td>";
+    echo "<td>".$results['gender']."</td>";
+    echo "<td>".$results['postaladdress']."</td>";
+    echo "<td>".$results['parent1name']."</td>";
+    echo "<td>".$results['parent1number']."</td>";
+    echo "<td>".$results['parent2name']."</td>";
+    echo "<td>".$results['parent2number']."</td>";
+    echo "<td>".$results['contactemail']."</td>";
+    echo "</tr>";
+  }
+}
+
+//function to fetch student information to be viewed (search by id)
 function viewStudentPersonal($id)
 {
   $sql = "SELECT * FROM student WHERE id = '$id'";
@@ -226,7 +198,6 @@ function viewStudentPersonal($id)
   }
   echo "Last Name: ". $results['lastname']. '<br><br>';
   echo "Date of Birth: ". $results['dateofbirth']. '<br><br>';
-  echo "Age: ". $results['age']. '<br><br>';
   echo "Gender: ". $results['gender']. '<br><br>';
   echo "Postal Address: ". $results['postaladdress']. '<br><br>';
   echo "First Parent's Name: ". $results['parent1name']. '<br><br>';
@@ -241,19 +212,98 @@ else
 }
 }
 
-//function to view student health Information
-function viewStudentHealth($id)
+
+//function to delete student record from Database
+function deleteStudent($id)
 {
-  $sql = "SELECT * FROM health_conditions WHERE sid = '$id'";
-  $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
+  $sql = "DELETE FROM student WHERE id = '$id'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
-  $run2 = $login->query($sql2);
+
+  if ($run)
+  {
+    echo "Student Record with ID ". $id. " successfully removed from database.";
+  }
+  else
+  {
+    echo "Unable to remove student record with ID ". $id. ".";
+  }
+}
+
+//function to update a student's personal Information
+function updateStudentPersonal($id)
+{
+  $sql = "SELECT * FROM student WHERE id = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
 
   $results = $login->fetch();
-  $results2 = $login->fetch();
+
+  echo $results['firstname']."'s'" . " personal information:". '<br><br>';
+  echo "ID: ". $results['id']. '<br><br>';
+  echo "First Name: ". $results['firstname']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  if ($results['middlename'] != "")
+  {
+    echo "Middle Name: ". $results['middlename']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  }
+  echo "Last Name: ". $results['lastname']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Date of Birth: ". $results['dateofbirth']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Gender: ". $results['gender']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Postal Address: ". $results['postaladdress']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "First Parent's Name: ". $results['parent1name']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "First Parent's Number: ". $results['parent1number']."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
+  echo "Second Parent's Name: ". $results['parent2name']."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
+  echo "Second Parent's Telephone Number: ". $results['parent2number']."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
+  echo "Email address: ". $results['contactemail']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+}
+
+//--------------------------------------------------------------------------------
+
+//function to add a health condition to a student
+function enterCondition()
+{
+  $id = $_POST['id'];
+  $condition = $_POST['condition'];
+  $details = $_POST['details'];
+
+  $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
+  // $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
+
+  //new instance of database class
+
+  $login = new Connect;
+
+  //execute query
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Condition name: ". $condition ."successfully added to ID: ". $id;
+  }
+  else
+  {
+    echo "Condition name: ". $condition . "Not added. Try again";
+  }
+}
+
+
+//function to view student health Information
+function viewStudentHealth($id)
+{
+  $sql = "SELECT * FROM health_conditions WHERE sid = '$id'";
+  // $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  // $run2 = $login->query($sql2);
+
+  // $results = $login->fetch();
+  // $results2 = $login->fetch();
 
         //loop through and print all results with the specified ID
 
@@ -264,11 +314,9 @@ function viewStudentHealth($id)
         echo $results['health_condition'].'<br><br>';
         echo $results['details'].'<br><br><br><br>';
       }
-  //}
-//}
 }
 
-
+//-------------------------------------------------------------------------------------------------------------
 //function to add inventory Item
 function addInventory()
 {
@@ -358,6 +406,7 @@ else
 {
   viewInventory();
 }
+
 //function to view inventoru Items
 function viewInventory()
 {
@@ -414,6 +463,8 @@ function searchInventory($searchitem)
   }
 }
 
+//----------------------------------------------------------------------------
+
 //function to add financial information to a student's profile
 function addFinancial()
 {
@@ -449,7 +500,7 @@ function viewStudentFinancial($id)
 
   $run = $login->query($sql);
 
-  echo "<table class=>";
+  echo "<table";
   echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th></tr>";
 
   while ($results = $login->fetch())
@@ -471,6 +522,6 @@ function viewStudentFinancial($id)
   echo "TOTAL ARREARS = GHS " .$ans['totalArrears'];
 }
 
-
+//--------------------------------------------------------------------------------
 
 ?>
