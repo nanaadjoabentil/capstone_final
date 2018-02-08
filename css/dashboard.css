@@ -3,8 +3,8 @@
   width: 300px;
   height: 270px;
   margin: 40px;
-  padding: 20px;
+  /* padding: 5px; */
   color: black;
-  background-color: ;
-
+  background-color: white;
+  border-color: black;
 }
