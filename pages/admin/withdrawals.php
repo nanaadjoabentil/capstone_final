@@ -15,31 +15,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
 <body>
-<p id = "heading"> Delete From Inventory </p>
+<p id = "heading"> Withdraw from Inventory  </p>
 <br>
 
-<form method="post" id="form">
+<form method="post" action="#" id="form">
+  <?php require_once('processadmin.php');?>
 
   <div class="form-group">
-    <label for="searchitem">Delete by ID:</label>
-    <input type="text" class="form-control" id="id" name="id">
+    <label for="item_name">Item Name:</label>
+    <input type="text" class="form-control" id="name" name="name" required>
   </div>
 
-  <button type="submit" class="btn btn-primary" name="deleteInventory">Delete</button>
+  <div class="form-group">
+    <label for="item_name">Number Withdrawn:</label>
+    <input type="number" class="form-control" id="number" name="number" min="1" required>
+  </div>
 
-</div>
-</form>
+  <div class="form-group">
+    <label for="item_name">Withdrawn By:</label>
+    <input type="text" class="form-control" id="who" name="who" required>
+  </div>
 
-<?php
-  include("processadmin.php");
+  <button type="submit" class="btn btn-primary" name="withdraw">Withdraw</button>
 
-  if(isset($_POST['deleteInventory']) && !empty($_POST['id']))
-  {
-    deleteInventory();
-  }
-  else
-  {
-    viewInventory();
-  }
-
- ?>
+   </body>
+   </html>

@@ -41,6 +41,10 @@ elseif (isset($_POST['deleteStudent']))
   $id = $_POST['id'];
   deleteStudent($id);
 }
+else if(isset($_POST['withdraw']))
+{
+  withdrawInventory();
+}
 
 //------------------------LOGIN FUNCTIONS--------------------------------------------------------
 
@@ -405,11 +409,12 @@ function viewInventory()
 
 echo "<br><br>";
   echo "<table>";
-  echo "<tr><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
 
 while ($results = $login->fetch())
 {
   echo "<tr>";
+  echo "<td>".$results['id']."</td>";
   echo "<td>".$results['item_name']."</td>";
   echo "<td>".$results['item_type']."</td>";
   echo "<td>".$results['grouping']."</td>";
@@ -432,11 +437,12 @@ function searchInventory($searchitem)
 
   echo "<br>";
   echo "<table>";
-  echo "<tr><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
+  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
 
   while ($results = $login->fetch())
   {
     echo "<tr>";
+    echo "<td>".$results['id']."</td>";
     echo "<td>".$results['item_name']."</td>";
     echo "<td>".$results['item_type']."</td>";
     echo "<td>".$results['grouping']."</td>";
@@ -471,13 +477,6 @@ function viewTotals()
 function deleteInventory()
 {
   $id = $_POST['id'];
-  $s = "SELECT item_name FROM inventory WHERE id = '$id'";
-  $login = new Connect;
-  $r = $login->query($sql);
-  if ($r)
-  {
-    $ans = $r['item_name'];
-    echo $ans;
 
     $sql = "DELETE FROM INVENTORY WHERE id = '$id'";
 
@@ -488,6 +487,7 @@ function deleteInventory()
     if ($run)
     {
       echo "Inventory item successfully deleted";
+      header("location: deleteInventory.php");
     }
     else
     {
@@ -495,8 +495,64 @@ function deleteInventory()
     }
   }
 
+// function to take account of inventory withdrawals
+function withdrawInventory()
+{
+  $name = $_POST['name'];
+  $number = $_POST['number'];
+  $who = $_POST['who'];
+
+  // query to get current number of item in Database
+  $sql = "SELECT SUM(total) as total FROM inventory WHERE item_name = '$name'";
+
+  $instance = new Connect;
+
+  $do = $instance->query($sql);
+  $get = $instance->fetch();
+
+  $current = $get['total'];
+  $numleft = $current - $number;
+
+  // insert into withdrawals table
+  $sql2 = "INSERT INTO inventory_withdrawals(item_name,num_in_stock,num_withdrawn,withdrawn_by,num_left)
+  VALUES ('$name','$current','$number','$who','$numleft')";
+
+  $run = $instance->query($sql2);
+
+  if ($run)
+  {
+    echo "Withdrawal Noted";
+  }
+  else
+  {
+    echo "Withdrawal could not be noted";
+  }
 }
 
+function viewWithdrawals()
+{
+  $sql = "SELECT * FROM inventory_withdrawals";
+
+  $instance = new Connect;
+
+  $run = $instance->query($sql);
+
+  echo "<br>";
+  echo "<table>";
+  echo "<tr><th>Item Name</th><th>Total</th><th>Withdrawn</th><th>Total Left</th><th>Withdrawn By</th><th>Date Withdrawn</th>";
+
+  while ($results = $instance->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['item_name']."</td>";
+    echo "<td>".$results['num_in_stock']."</td>";
+    echo "<td>".$results['num_withdrawn']."</td>";
+    echo "<td>".$results['num_left']."</td>";
+    echo "<td>".$results['withdrawn_by']."</td>";
+    echo "<td>".$results['date']."</td>";
+    echo "</tr>";
+  }
+}
 //---------------------------------STUDENT FINANCIAL INFORMATION-------------------------------------------
 
 //function to add financial information to a student's profile
