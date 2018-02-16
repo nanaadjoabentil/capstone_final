@@ -235,23 +235,28 @@ function updateStudentPersonal($id)
 
   echo $results['firstname']."'s'" . " personal information:". '<br><br>';
   echo "ID: ". $results['id']. '<br><br>';
-  echo "First Name: ". $results['firstname']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "First Name: ". $results['firstname']. "&nbsp&nbsp". "<input type=\"submit\" name=\"edit\" value=\"Edit\">".'<br><br>';
   if ($results['middlename'] != "")
   {
-    echo "Middle Name: ". $results['middlename']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+    echo "Middle Name: ". $results['middlename']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
   }
-  echo "Last Name: ". $results['lastname']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "Date of Birth: ". $results['dateofbirth']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "Gender: ". $results['gender']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "Postal Address: ". $results['postaladdress']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "First Parent's Name: ". $results['parent1name']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "First Parent's Number: ". $results['parent1number']."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
-  echo "Second Parent's Name: ". $results['parent2name']."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
-  echo "Second Parent's Telephone Number: ". $results['parent2number']."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
-  echo "Email address: ". $results['contactemail']. "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Last Name: ". $results['lastname']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Date of Birth: ". $results['dateofbirth']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Gender: ". $results['gender']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "Postal Address: ". $results['postaladdress']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "First Parent's Name: ". $results['parent1name']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+  echo "First Parent's Number: ". $results['parent1number']."&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
+  echo "Second Parent's Name: ". $results['parent2name']."&nbsp&nbsp"."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
+  echo "Second Parent's Telephone Number: ". $results['parent2number']."&nbsp&nbsp"."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
+  echo "Email address: ". $results['contactemail']. "&nbsp&nbsp"."<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+
+  if (isset($_POST['edit']))
+  {
+    echo "get it";
+  }
 }
 
-//--------------------------------------------------------------------------------
+//---------------------------------HEALTH CONDITION-----------------------------------------------
 
 //function to add a health condition to a student
 function enterCondition()
@@ -306,7 +311,7 @@ function viewStudentHealth($id)
       }
 }
 
-//-------------------------------------------------------------------------------------------------------------
+//----------------------------------------INVENTORY INFORMATION---------------------------------------------------------------------
 //function to add inventory Item
 function addInventory()
 {
@@ -400,12 +405,11 @@ function viewInventory()
 
 echo "<br><br>";
   echo "<table>";
-  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
+  echo "<tr><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
 
 while ($results = $login->fetch())
 {
   echo "<tr>";
-  echo "<td>".$results['id']."</td>";
   echo "<td>".$results['item_name']."</td>";
   echo "<td>".$results['item_type']."</td>";
   echo "<td>".$results['grouping']."</td>";
@@ -428,12 +432,11 @@ function searchInventory($searchitem)
 
   echo "<br>";
   echo "<table>";
-  echo "<tr><th>ID</th><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
+  echo "<tr><th>Item Name</th><th>Item Type</th><th>Grouping</th><th>Number in Stock</th><th>Total</th><th>Date and Time Recorded</th></tr>";
 
   while ($results = $login->fetch())
   {
     echo "<tr>";
-    echo "<td>".$results['id']."</td>";
     echo "<td>".$results['item_name']."</td>";
     echo "<td>".$results['item_type']."</td>";
     echo "<td>".$results['grouping']."</td>";
@@ -444,7 +447,57 @@ function searchInventory($searchitem)
   }
 }
 
-//----------------------------------------------------------------------------
+function viewTotals()
+{
+  $sql = "SELECT item_name, SUM(total) AS total FROM INVENTORY GROUP BY item_name";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<br>";
+  echo "<table>";
+  echo "<tr><th>Item Name</th><th>Total</th>";
+
+  while ($results = $login->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['item_name']."</td>";
+    echo "<td>".$results['total']."</td>";
+    echo "</tr>";
+  }
+}
+
+function deleteInventory()
+{
+  $id = $_POST['id'];
+  $s = "SELECT item_name FROM inventory WHERE id = '$id'";
+  $login = new Connect;
+  $r = $login->query($sql);
+  if ($r)
+  {
+    $ans = $r['item_name'];
+    echo $ans;
+
+    $sql = "DELETE FROM INVENTORY WHERE id = '$id'";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    if ($run)
+    {
+      echo "Inventory item successfully deleted";
+    }
+    else
+    {
+      echo "Could not delete item";
+    }
+  }
+
+}
+
+//---------------------------------STUDENT FINANCIAL INFORMATION-------------------------------------------
 
 //function to add financial information to a student's profile
 function addFinancial()

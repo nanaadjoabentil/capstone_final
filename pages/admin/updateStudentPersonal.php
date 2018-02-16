@@ -33,12 +33,12 @@
 
 <?php require_once("processadmin.php");
 
-$id = $_POST['id'];
-
 if (isset($_POST['update']))
 {
+  $id = $_POST['id'];
   updateStudentPersonal($id);
 }
 
-
 ?>
+</body>
+</html>

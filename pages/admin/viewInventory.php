@@ -29,6 +29,7 @@
   </div>
 
   <button type="submit" class="btn btn-primary" name="searchInventory">Search</button>
+  <button type="submit" class="btn btn-primary" name="viewTotals">View Totals</button>
 
 </div>
 </form>
@@ -39,6 +40,10 @@ require_once('processadmin.php');
 if (isset($_POST['searchInventory']) && !empty($_POST['searchitem']))
 {
   searchInventory($_POST['searchitem']);
+}
+else if (isset($_POST['viewTotals']))
+{
+  viewTotals();
 }
 else
 {
