@@ -1,5 +1,5 @@
 <?php
-require_once('../../database/connect.php');
+require_once('../../../database/connect.php');
 
 if (isset($_POST['adminlogin']))
 {
@@ -22,28 +22,17 @@ else if (isset($_POST['searchPersonal']))
   $id = $_POST['id'];
   viewStudentPersonal($id);
 }
-else if (isset($_POST['searchHealth']))
-{
-  $id = $_POST['id'];
-  viewStudentHealth($id);
-}
 else if(isset($_POST['studentFinancial']))
 {
   addFinancial();
 }
-elseif (isset($_POST['searchFinancial']))
-{
-  $id = $_POST['id'];
-  viewStudentFinancial($id);
-}
-elseif (isset($_POST['deleteStudent']))
-{
-  $id = $_POST['id'];
-  deleteStudent($id);
-}
 else if(isset($_POST['withdraw']))
 {
   withdrawInventory();
+}
+else if(isset($_POST['registerTeacher']))
+{
+  checkUsernameT();
 }
 
 //------------------------LOGIN FUNCTIONS--------------------------------------------------------
@@ -227,40 +216,81 @@ function deleteStudent($id)
 }
 
 //function to update a student's personal Information
-function updateStudentPersonal($id)
+function updateStudentPersonal()
 {
+  $id = $_POST['id'];
+  $firstname = $_POST['firstname'];
+  $middlename = $_POST['middlename'];
+  $lastname = $_POST['lastname'];
+  $dob = $_POST['dob'];
+  $gender = $_POST['group1'];
+  $pobox = $_POST['pobox'];
+  $parent1name = $_POST['parent1name'];
+  $parent1num = $_POST['parent1num'];
+  $parent2name = $_POST['parent2name'];
+  $parent2num = $_POST['parent2num'];
+  $email = $_POST['email'];
+
   $sql = "SELECT * FROM student WHERE id = '$id'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
 
-  $results = $login->fetch();
-
-  echo $results['firstname']."'s'" . " personal information:". '<br><br>';
-  echo "ID: ". $results['id']. '<br><br>';
-  echo "First Name: ". $results['firstname']. "&nbsp&nbsp". "<input type=\"submit\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  if ($results['middlename'] != "")
+  while ($results = $login->fetch())
   {
-    echo "Middle Name: ". $results['middlename']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  }
-  echo "Last Name: ". $results['lastname']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "Date of Birth: ". $results['dateofbirth']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "Gender: ". $results['gender']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "Postal Address: ". $results['postaladdress']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "First Parent's Name: ". $results['parent1name']. "&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
-  echo "First Parent's Number: ". $results['parent1number']."&nbsp&nbsp". "<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
-  echo "Second Parent's Name: ". $results['parent2name']."&nbsp&nbsp"."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
-  echo "Second Parent's Telephone Number: ". $results['parent2number']."&nbsp&nbsp"."<input type=\"button\" name=\"edit\" value=\"Edit\">". '<br><br>';
-  echo "Email address: ". $results['contactemail']. "&nbsp&nbsp"."<input type=\"button\" name=\"edit\" value=\"Edit\">".'<br><br>';
+    $sql1 = "UPDATE student SET firstname = '$firstname' WHERE id = '$id'";
+    $sql2 = "UPDATE student SET middlename = '$middlename' WHERE id = '$id'";
+    $sql3 = "UPDATE student SET lastname = '$lastname' WHERE id = '$id'";
+    $sql4 = "UPDATE student SET dateofbirth = '$dob' WHERE id = '$id'";
+    $sql5 = "UPDATE student SET gender = '$gender' WHERE id = '$id'";
+    $sql6 = "UPDATE student SET postaladdress = '$pobox' WHERE id = '$id'";
+    $sql7 = "UPDATE student SET parent1name = '$parent1name' WHERE id = '$id'";
+    $sql8 = "UPDATE student SET parent1number = '$parent1num' WHERE id = '$id'";
+    $sql9 = "UPDATE student SET parent2number = '$parent2num' WHERE id = '$id'";
+    $sql10 = "UPDATE student SET parent2name = '$parent2name' WHERE id = '$id'";
+    $sql11 = "UPDATE student SET contactemail = '$email' WHERE id = '$id'";
 
-  if (isset($_POST['edit']))
-  {
-    echo "get it";
+    $run1 = $login->query($sql1);
+    $run2 = $login->query($sql2);
+    $run3 = $login->query($sql3);
+    $run4 = $login->query($sql4);
+    $run5 = $login->query($sql5);
+    $run6 = $login->query($sql6);
+    $run7 = $login->query($sql7);
+    $run8 = $login->query($sql8);
+    $run9 = $login->query($sql9);
+    $run10 = $login->query($sql10);
+    $run11 = $login->query($sql11);
+
+    if ($run1 && $run2 && $run3 && $run4 && $run5 && $run6 && $run7 && $run8 && $run9 && $run10 && $run11)
+    {
+      echo "Update Successful <br><br><br>";
+      echo "Old" . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'. "New". "<br><br>";
+      echo $results['firstname'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $firstname. "<br><br>";
+      echo $results['middlename'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $middlename. "<br><br>";
+      echo $results['lastname'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $lastname. "<br><br>";
+      echo $results['dateofbirth'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $dob. "<br><br>";
+      echo $results['gender'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $gender. "<br><br>";
+      echo $results['postaladdress'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $pobox. "<br><br>";
+      echo $results['parent1name'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $parent1name. "<br><br>";
+      echo $results['parent1number'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $parent1num. "<br><br>";
+      echo $results['parent2name'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $parent2name. "<br><br>";
+      echo $results['parent2number'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $parent2num. "<br><br>";
+      echo $results['contactemail'] . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' . $email;
+    }
+    else
+    {
+      echo "Update failed.";
+    }
   }
+
+
+
+
 }
 
-//---------------------------------HEALTH CONDITION-----------------------------------------------
+//---------------------------------HEALTH CONDITIONS-----------------------------------------------
 
 //function to add a health condition to a student
 function enterCondition()
@@ -270,7 +300,6 @@ function enterCondition()
   $details = $_POST['details'];
 
   $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
-  // $sql = "INSERT INTO health_conditions(sid,health_condition,details) VALUES ('$id','$condition','$details')";
 
   //new instance of database class
 
@@ -281,38 +310,75 @@ function enterCondition()
 
   if ($run)
   {
-    echo "Condition name: ". $condition ."successfully added to ID: ". $id;
+    echo "Condition name: ". $condition ." successfully added to ID: ". $id;
   }
   else
   {
-    echo "Condition name: ". $condition . "Not added. Try again";
+    echo "Condition name: ". $condition . " Not added. Try again";
   }
 }
 
 
-//function to view student health Information
-function viewStudentHealth($id)
+//function to search through student health Information
+function searchHealth()
 {
+  $id = $_POST['id'];
   $sql = "SELECT * FROM health_conditions WHERE sid = '$id'";
-  // $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
-  // $run2 = $login->query($sql2);
-
-  // $results = $login->fetch();
-  // $results2 = $login->fetch();
 
         //loop through and print all results with the specified ID
 
       while ($results = $login->fetch())
       {
         echo $results['cid'].'<br><br>';
-        echo $results['sid'].'<br><br>';
-        echo $results['health_condition'].'<br><br>';
-        echo $results['details'].'<br><br><br><br>';
+        echo "Student ID: ". $results['sid'].'<br><br>';
+        echo "Health Condition: ". $results['health_condition'].'<br><br>';
+        echo "Details: ". $results['details'].'<br><br><br><br>';
       }
+}
+
+
+//function to view all health information from the database
+function viewAllHealth()
+{
+  $sql = "SELECT * FROM health_conditions";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+      while ($results = $login->fetch())
+      {
+        echo $results['cid'].'<br><br>';
+        echo "Student ID: ". $results['sid'].'<br><br>';
+        echo "Health Condition: ". $results['health_condition'].'<br><br>';
+        echo "Details: ". $results['details'].'<br><br><br><br>';
+      }
+}
+
+//function to delete a health record
+function deleteHealthRecord()
+{
+  $id = $_POST['id'];
+  $condition = $_POST['condition'];
+
+  $sql = "DELETE FROM health_conditions WHERE sid = '$id' AND health_condition = '$condition'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Deletion successful.";
+  }
+  else
+  {
+    echo "Problem occurred while deleting.";
+  }
 }
 
 //----------------------------------------INVENTORY INFORMATION---------------------------------------------------------------------
@@ -397,7 +463,7 @@ function addInventory()
   }
 }
 
-//function to view inventoru Items
+//function to view inventory Items
 function viewInventory()
 {
   $sql = "SELECT * FROM inventory";
@@ -580,9 +646,10 @@ function addFinancial()
   }
 }
 
-//function to view student financial information
-function viewStudentFinancial($id)
+//function to search through for a particular student in financial information
+function searchFinancial()
 {
+  $id = $_POST['id'];
   $sql = "SELECT * FROM financial WHERE sid = '$id'";
   $sql2 = "SELECT SUM(fees_arrears) as totalArrears FROM financial WHERE sid= '$id'";
 
@@ -590,8 +657,8 @@ function viewStudentFinancial($id)
 
   $run = $login->query($sql);
 
-  echo "<table";
-  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th></tr>";
+  echo "<table>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th><th>Date Time</th></tr>";
 
   while ($results = $login->fetch())
   {
@@ -603,8 +670,10 @@ function viewStudentFinancial($id)
     echo "<td>".$results['details']."</td>";
     echo "<td>".$results['amount_paid']."</td>";
     echo "<td>".$results['fees_arrears']."<td>";
+    echo "<td>".$results['date']."<td>";
     echo "</tr>";
   }
+
   echo "<table>";
   $run2 = $login->query($sql2);
   $ans = $login->fetch();
@@ -612,6 +681,258 @@ function viewStudentFinancial($id)
   echo "TOTAL ARREARS = GHS " .$ans['totalArrears'];
 }
 
-//--------------------------------------------------------------------------------
+
+//function to view all financial information from the database.
+function viewAllFinancial()
+{
+  $sql = "SELECT * FROM financial";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<table>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th><th>Date Time</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    // echo "<br>";
+    echo "<tr>";
+    echo "<td>".$results['fid']."</td>";
+    echo "<td>".$results['sid']."<td>";
+    echo "<td>".$results['bill']."</td>";
+    echo "<td>".$results['details']."</td>";
+    echo "<td>".$results['amount_paid']."</td>";
+    echo "<td>".$results['fees_arrears']."<td>";
+      echo "<td>".$results['date']."<td>";
+    echo "</tr>";
+  }
+  echo "<table>";
+}
+
+//function to delete a financial Record
+function deleteFinancial()
+{
+  $id = $_POST['id'];
+  $date = $_POST['id'];
+  $time = $_POST['time'];
+  $datetime = $date ." ". $time;
+
+  echo $datetime;
+
+  $sql = "SELECT fid, sid FROM financial where date = '$datetime'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  while ($results = $login->fetch())
+  {
+    echo $results['fid'];
+    echo $results['sid'];
+  }
+}
+//-------------------------------------------------------------STAFF INFO-----------------------------------------------------------------------------------------
+
+//function to check if parent username is unique
+function checkUsernameT()
+{
+  $username = $_POST['username'];
+
+  $check = new Connect;
+
+  $sql = "SELECT * FROM staffProfile WHERE username = '$username'";
+  //echo $sql;
+
+  $result = $check->query($sql);
+  $get = $check->fetch();
+
+  if ($get)
+  {
+     echo "Please choose another username. This one is already taken";
+  }
+  else
+  {
+    //if username is unique, go ahead and validate registration form.
+    validateRegisterTeacher();
+  }
+}
+
+//function to validate teacher registration form
+function validateRegisterTeacher()
+{
+  $name = $_POST['name'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $number = $_POST['tel'];
+  $email = $_POST['email'];
+  $nextofkin = $_POST['nextofkin'];
+  $noknumber = $_POST['noknumber'];
+
+  if (empty($name || $username || $password || $number || $email || $nextofkin || $noknumber))
+  {
+    echo "All fields are required. Please fill all";
+  }
+  else
+  {
+    registerTeacher();
+  }
+}
+
+//function to register a teacher
+function registerTeacher()
+{
+  $id = rand(10000,99999);
+  $name = $_POST['name'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $number = $_POST['tel'];
+  $email = $_POST['email'];
+  $nextofkin = $_POST['nextofkin'];
+  $noknumber = $_POST['noknumber'];
+  $type = "teacher";
+
+  $sql = "INSERT INTO staffProfile(staffid,username,name,number,email,nextofkin,nextofkintelephone)
+  VALUES('$id','$username','$name','$number','$email','$nextofkin','$noknumber')";
+
+  $sql2 = "INSERT INTO login(username,password,usertype) VALUES('$username','$password','$type')";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $run2 = $login->query($sql2);
+
+  if ($run)
+  {
+    if ($run2)
+    {
+      echo "Teacher registration successful";
+    }
+    else
+    {
+      echo "Error Occurred during registration";
+    }
+  }
+}
+
+//function to view staff information
+function searchStaff()
+{
+  $id = $_POST['id'];
+  $sql = "SELECT staffid,username,name,number,email,nextofkin,nextofkintelephone FROM staffProfile WHERE staffid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $results = $login->fetch();
+
+    echo '<br>';
+    echo "Staff ID: " .$results['staffid'].'<br>';
+    echo "Full Name: ". $results['name'].'<br>';
+    echo "Username: " .$results['username'].'<br>';
+    echo "Telephone Number: " .$results['number'].'<br>';
+    echo "Email address: " .$results['email'].'<br>';
+    echo "Next of Kin: " .$results['nextofkin'].'<br>';
+    echo "Next of Kin's Telephone Number: " .$results['nextofkintelephone'].'<br>';
+  }
+
+//function to view all staff members
+function viewAllStaff()
+{
+  $sql = "SELECT staffid,username,name,number,email,nextofkin,nextofkintelephone FROM staffProfile";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  $results = $login->fetch();
+
+  if($results)
+  {
+    echo '<Br><br><br>';
+    echo "<table>";
+    echo "<tr><th>Staff ID</th><th>Username</th><th>Name</th><th>Number</th><th>Email</th><th>Next of Kin</th><th>Next of Kin Contact</th></tr>";
+    while ($results = $login->fetch())
+    {
+      echo "<tr>";
+      echo "<td>".$results['staffid']."</td>";
+      echo "<td>".$results['username']."</td>";
+      echo "<td>".$results['name']."</td>";
+      echo "<td>".$results['number']."</td>";
+      echo "<td>".$results['email']."</td>";
+      echo "<td>".$results['nextofkin']."</td>";
+      echo "<td>".$results['nextofkintelephone']."</td>";
+      echo "</tr>";
+    }
+    echo "</table>";
+  }
+}
+
+//function to update staff member's personal information
+function updateStaff()
+{
+  $id = $_POST['id'];
+  $name = $_POST['name'];
+  $username = $_POST['username'];
+  $number = $_POST['tel'];
+  $email = $_POST['email'];
+  $nextofkin = $_POST['nextofkin'];
+  $noknumber = $_POST['noknumber'];
+
+  $sql = "SELECT * FROM staffProfile WHERE staffid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  while ($results = $login->fetch())
+  {
+    $sql1 = "UPDATE staffProfile SET username = '$username' WHERE staffid = '$id'";
+    $sql2 = "UPDATE staffProfile SET name = '$name' WHERE staffid = '$id'";
+    $sql3 = "UPDATE staffProfile SET number = '$number' WHERE staffid = '$id'";
+    $sql4 = "UPDATE staffProfile SET email = '$email' WHERE staffid = '$id'";
+    $sql5 = "UPDATE staffProfile SET nextofkin = '$nextofkin' WHERE staffid = '$id'";
+    $sql6 = "UPDATE staffProfile SET nextofkintelephone = '$noknumber' WHERE staffid = '$id'";
+
+    $run1 = $login->query($sql1);
+    $run2 = $login->query($sql2);
+    $run3 = $login->query($sql3);
+    $run4 = $login->query($sql4);
+    $run5 = $login->query($sql5);
+    $run6 = $login->query($sql6);
+
+    if ($run1 && $run2 && $run3 && $run4 && $run5 && $run6)
+    {
+      echo "Update Successful";
+    }
+    else
+    {
+      echo "Update failed";
+    }
+  }
+
+}
+
+//function to delete a staff member's personal information
+function deleteStaff()
+{
+  $id = $_POST['id'];
+
+  $sql = "DELETE FROM staffProfile WHERE staffid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Staff Profile with ID ". $id . " successfully deleted";
+    header("location: deleteStaff.php");
+  }
+  else
+  {
+    echo "Uh Oh! Something went wrong.";
+  }
+}
 
 ?>
