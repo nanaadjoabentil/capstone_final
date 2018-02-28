@@ -14,32 +14,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
+
 <body>
 
-<p id = "heading"> View student Academic Information </p>
-<br>
+  <p id="heading"> Delete an Academic Record </p>
+  <br>
 
-<form method="post" id="form">
-  <div class="form-group">
-    <label for="id">Search by Student ID Number</label>
-    <input type="text" class="form-control" id="id" name="id">
-  </div>
+  <form method="post" id="form">
 
-  <button type="submit" class="btn btn-primary" name="searchAcademic">Search</button>
+      <div class="form-group">
+        <label for="id">ID of Record to Delete:</label>
+        <input type="text" class="form-control" id="id" name="id">
+      </div>
 
-</div>
-</form>
+      <button type="submit" class="btn btn-primary" name="deleteAcademic">Delete Record</button><br><br>
 
-<?php require_once('processteacher.php');
+      </div>
+      </form>
 
-if (isset($_POST['searchAcademic']))
-{
-  searchAcademic();
-}
-else
-{
-  viewAllAcademic();
-}
-?>
-</body>
+      <?php
+
+      require_once('processteacher.php');
+      
+      if (isset($_POST['deleteAcademic']))
+      {
+        deleteAcademic();
+      }
+      else
+      {
+        viewAllAcademic();
+      }
+      ?>
+  </body>
 </html>
