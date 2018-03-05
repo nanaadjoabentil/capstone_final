@@ -1,5 +1,5 @@
 <?php
-require_once('../../../database/connect.php');
+require_once('../../database/connect.php');
 
 if (isset($_POST['adminlogin']))
 {
@@ -33,6 +33,10 @@ else if(isset($_POST['withdraw']))
 else if(isset($_POST['registerTeacher']))
 {
   checkUsernameT();
+}
+else if (isset($_POST['updateStaff']))
+{
+  updateStaff();
 }
 
 //------------------------LOGIN FUNCTIONS--------------------------------------------------------
@@ -138,7 +142,7 @@ function viewAllStudents()
 
   // echo "<br><br>";
   echo "<table>";
-  echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Date of Birth</th><th>Gender</th><th>Postal Address</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Contact Email</th></tr>";
+  echo "<tr><th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Date of Birth</th><th>Gender</th><th>Postal Address</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Contact Email</th></tr>";
 
   while ($results = $login->fetch())
   {
@@ -160,8 +164,9 @@ function viewAllStudents()
 }
 
 //function to fetch student information to be viewed (search by id)
-function viewStudentPersonal($id)
+function viewStudentPersonal()
 {
+  $id = $_POST['id'];
   $sql = "SELECT * FROM student WHERE id = '$id'";
 
   $login = new Connect;
@@ -197,8 +202,9 @@ else
 
 
 //function to delete student record from Database
-function deleteStudent($id)
+function deleteStudent()
 {
+  $id = $_POST['id'];
   $sql = "DELETE FROM student WHERE id = '$id'";
 
   $login = new Connect;
@@ -493,8 +499,9 @@ echo "</table>";
 }
 
 //function to search inventory
-function searchInventory($searchitem)
+function searchInventory()
 {
+  $searchitem = $_POST['searchitem'];
   $sql = "SELECT * FROM inventory WHERE item_type LIKE '%$searchitem%'";
 
   $login = new Connect;
@@ -515,6 +522,34 @@ function searchInventory($searchitem)
     echo "<td>".$results['num_in_stock']."</td>";
     echo "<td>".$results['total']."</td>";
     echo "<td>".$results['date_recorded']."</td>";
+    echo "</tr>";
+  }
+}
+
+//function to search inventory withdrawals table
+function searchWithdrawals()
+{
+  $searchitem = $_POST['searchitem'];
+
+  $sql = "SELECT * FROM inventory_withdrawals WHERE item_name LIKE '%$searchitem%'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<br>";
+  echo "<table>";
+  echo "<tr><th>Item Name</th><th>Number in Stock</th><th>Number Withdrawn</th><th>Withdrawn By</th><th>Date Withdrawn</th><th>Number Left</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['item_name']."</td>";
+    echo "<td>".$results['num_in_stock']."</td>";
+    echo "<td>".$results['num_withdrawn']."</td>";
+    echo "<td>".$results['withdrawn_by']."</td>";
+    echo "<td>".$results['date']."</td>";
+    echo "<td>".$results['num_left']."</td>";
     echo "</tr>";
   }
 }
@@ -873,7 +908,6 @@ function updateStaff()
 {
   $id = $_POST['id'];
   $name = $_POST['name'];
-  $username = $_POST['username'];
   $number = $_POST['tel'];
   $email = $_POST['email'];
   $nextofkin = $_POST['nextofkin'];
@@ -887,21 +921,19 @@ function updateStaff()
 
   while ($results = $login->fetch())
   {
-    $sql1 = "UPDATE staffProfile SET username = '$username' WHERE staffid = '$id'";
     $sql2 = "UPDATE staffProfile SET name = '$name' WHERE staffid = '$id'";
     $sql3 = "UPDATE staffProfile SET number = '$number' WHERE staffid = '$id'";
     $sql4 = "UPDATE staffProfile SET email = '$email' WHERE staffid = '$id'";
     $sql5 = "UPDATE staffProfile SET nextofkin = '$nextofkin' WHERE staffid = '$id'";
     $sql6 = "UPDATE staffProfile SET nextofkintelephone = '$noknumber' WHERE staffid = '$id'";
 
-    $run1 = $login->query($sql1);
     $run2 = $login->query($sql2);
     $run3 = $login->query($sql3);
     $run4 = $login->query($sql4);
     $run5 = $login->query($sql5);
     $run6 = $login->query($sql6);
 
-    if ($run1 && $run2 && $run3 && $run4 && $run5 && $run6)
+    if ($run2 && $run3 && $run4 && $run5 && $run6)
     {
       echo "Update Successful";
     }
@@ -910,7 +942,6 @@ function updateStaff()
       echo "Update failed";
     }
   }
-
 }
 
 //function to delete a staff member's personal information

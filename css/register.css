@@ -1,17 +1,86 @@
+@import "bourbon";
+
+body {
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #ffffcc;
+}
+
 #heading
 {
-  background-color: green;
+  background-color:#162d41;
   text-align: center;
   font-size: 200%;
+  color: white;
 }
 
-body
+#butns
 {
-  margin-left: 50px;
-  margin-right: 50px;
+  background-color: #162d41;
+  color: white;
 }
 
-tr th{
-  background-color: yellow;
-  width: inherit;
+th
+{
+  background-color: #543233 ;
+  color: white;
+  width: 1200px;
+}
+
+
+tr:nth-child(odd)
+{
+background-color: #b3ffb3;
+}
+
+td
+{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.wrapper {
+	margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #c5cc33;
+  border: 1px solid #c5cc33;
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: 20px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
 }

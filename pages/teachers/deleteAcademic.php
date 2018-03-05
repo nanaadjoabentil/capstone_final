@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
+  <img src="../../images/2.png" alt="pic" width="1270px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +30,7 @@
         <input type="text" class="form-control" id="id" name="id">
       </div>
 
-      <button type="submit" class="btn btn-primary" name="deleteAcademic">Delete Record</button><br><br>
+      <button type="submit" class="btn btn-primary" id="butns" name="deleteAcademic">Delete Record</button><br><br>
 
       </div>
       </form>
@@ -35,7 +38,7 @@
       <?php
 
       require_once('processteacher.php');
-      
+
       if (isset($_POST['deleteAcademic']))
       {
         deleteAcademic();

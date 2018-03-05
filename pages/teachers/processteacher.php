@@ -11,6 +11,26 @@ else if(isset($_POST['addAcademic']))
 {
   addAcademic();
 }
+else if(isset($_POST['enterCondition']))
+{
+  enterCondition();
+}
+else if(isset($_POST['searchStaff']))
+{
+  searchStaff();
+}
+else if (isset($_POST['updateStaff']))
+{
+  updateStaff();
+}
+else if (isset($_POST['deleteStaff']))
+{
+  deleteStaff();
+}
+else if (isset($_POST['addStaffSubjects']))
+{
+  addStaffSubjects();
+}
 
 
 // ---------------------------------------------------------TEACHER LOGIN ---------------------------------------------------------------------------
@@ -150,12 +170,6 @@ function viewAllAcademic()
   echo '</table>';
 }
 
-//function to update academic Information
-function updateAcademic()
-{
-  
-}
-
 // function to delete student academic Information using record ID
 function deleteAcademic()
 {
@@ -199,7 +213,7 @@ function enterCondition()
 
   if ($run)
   {
-    echo "Condition name: ". $condition ." successfully added to ID: ". $id;
+    echo "Condition name: \"". $condition ."\" successfully added to ID: ". $id;
   }
   else
   {
@@ -249,6 +263,264 @@ function viewAllHealth()
       }
 }
 
+//----------------------------------------------STAFF PROFILES---------------------------------------------------------------------------
+//function to view staff information
+function searchStaff()
+{
+  $id = $_POST['id'];
+  $sql = "SELECT staffid,username,name,number,email,nextofkin,nextofkintelephone FROM staffProfile WHERE staffid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+  $results = $login->fetch();
 
 
+if ($results)
+{
+    echo '<br>';
+    echo "Staff ID: " .$results['staffid'].'<br>';
+    echo "Full Name: ". $results['name'].'<br>';
+    echo "Username: " .$results['username'].'<br>';
+    echo "Telephone Number: " .$results['number'].'<br>';
+    echo "Email address: " .$results['email'].'<br>';
+    echo "Next of Kin: " .$results['nextofkin'].'<br>';
+    echo "Next of Kin's Telephone Number: " .$results['nextofkintelephone'].'<br>';
+  }
+  else
+  {
+    echo "<br>";
+    echo "No Staff Member with that ID Number";
+  }
+  }
+
+  //function to update staff member's personal information
+  function updateStaff()
+  {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $number = $_POST['tel'];
+    $email = $_POST['email'];
+    $nextofkin = $_POST['nextofkin'];
+    $noknumber = $_POST['noknumber'];
+
+    $sql = "SELECT * FROM staffProfile WHERE staffid = '$id'";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    while ($results = $login->fetch())
+    {
+      $sql2 = "UPDATE staffProfile SET name = '$name' WHERE staffid = '$id'";
+      $sql3 = "UPDATE staffProfile SET number = '$number' WHERE staffid = '$id'";
+      $sql4 = "UPDATE staffProfile SET email = '$email' WHERE staffid = '$id'";
+      $sql5 = "UPDATE staffProfile SET nextofkin = '$nextofkin' WHERE staffid = '$id'";
+      $sql6 = "UPDATE staffProfile SET nextofkintelephone = '$noknumber' WHERE staffid = '$id'";
+
+      $run2 = $login->query($sql2);
+      $run3 = $login->query($sql3);
+      $run4 = $login->query($sql4);
+      $run5 = $login->query($sql5);
+      $run6 = $login->query($sql6);
+
+      if ($run2 && $run3 && $run4 && $run5 && $run6)
+      {
+        echo "Update Successful";
+      }
+      else
+      {
+        echo "Update failed";
+      }
+    }
+  }
+
+  //function to delete a staff member's personal information
+  function deleteStaff()
+  {
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM staffProfile WHERE staffid = '$id'";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    if ($run)
+    {
+      echo "Staff Profile with ID ". $id . " successfully deleted";
+      // header("location: deleteStaff.php");
+    }
+    else
+    {
+      echo "Uh Oh! Something went wrong.";
+    }
+  }
+
+  //-------------------------------------------------------STUDENT PERSONAL ----------------------------------------------------
+  //function to view all students
+  function viewAllStudents()
+  {
+    $sql = "SELECT id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail FROM student";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    // echo "<br><br>";
+    echo "<table>";
+    echo "<tr><th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Date of Birth</th><th>Gender</th><th>Postal Address</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Parent Name</th><th>Parent Telephone Number</th><th>Contact Email</th></tr>";
+
+    while ($results = $login->fetch())
+    {
+      echo "<tr>";
+      echo "<td>".$results['id']."</td>";
+      echo "<td>".$results['firstname']."</td>";
+      echo "<td>".$results['middlename']."</td>";
+      echo "<td>".$results['lastname']."</td>";
+      echo "<td>".$results['dateofbirth']."</td>";
+      echo "<td>".$results['gender']."</td>";
+      echo "<td>".$results['postaladdress']."</td>";
+      echo "<td>".$results['parent1name']."</td>";
+      echo "<td>".$results['parent1number']."</td>";
+      echo "<td>".$results['parent2name']."</td>";
+      echo "<td>".$results['parent2number']."</td>";
+      echo "<td>".$results['contactemail']."</td>";
+      echo "</tr>";
+    }
+    echo "</table>";
+  }
+
+  //function to fetch student information to be viewed (search by id)
+  function viewStudentPersonal()
+  {
+    $id = $_POST['id'];
+    $sql = "SELECT * FROM student WHERE id = '$id'";
+
+    $login = new Connect;
+
+    $run = $login->query($sql);
+
+    $results = $login->fetch();
+
+    if ($results)
+    {
+    echo $results['firstname']."'s'" . " personal information:". '<br><br>';
+    echo "ID: ". $results['id']. '<br><br>';
+    echo "First Name: ". $results['firstname']. '<br><br>';
+    if ($results['middlename'] != "")
+    {
+      echo "Middle Name: ". $results['middlename']. '<br><br>';
+    }
+    echo "Last Name: ". $results['lastname']. '<br><br>';
+    echo "Date of Birth: ". $results['dateofbirth']. '<br><br>';
+    echo "Gender: ". $results['gender']. '<br><br>';
+    echo "Postal Address: ". $results['postaladdress']. '<br><br>';
+    echo "First Parent's Name: ". $results['parent1name']. '<br><br>';
+    echo "First Parent's Number: ". $results['parent1number']. '<br><br>';
+    echo "Second Parent's Name: ". $results['parent2name']. '<br><br>';
+    echo "Second Parent's Telephone Number: ". $results['parent2number']. '<br><br>';
+    echo "Email address: ". $results['contactemail']. '<br><br>';
+  }
+  else
+  {
+    echo "No Record Found with that ID";
+  }
+  }
+
+//-----------------------------------------STAFF SUBJECTS----------------------------------------------------------------------------
+//function to add staffSubjects
+function addStaffSubjects()
+{
+  $id = $_POST['id'];
+  $subject = $_POST['subject'];
+  $class = $_POST['class'];
+
+  $sql = "INSERT INTO staffSubjects(staffid,subject,class) VALUES ('$id','$subject','$class')";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Successfully Added";
+  }
+  else
+  {
+    echo "Could not be added";
+  }
+}
+
+//function to search staff subjects
+function searchStaffSubjects()
+{
+  $id = $_POST['id'];
+
+  $sql = "SELECT staffid, subject, class FROM staffSubjects WHERE staffid = '$id'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<table>";
+  echo "<tr><th>Staff ID</th><th>Subject</th><th>Class</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['staffid']."</td>";
+    echo "<td>".$results['subject']."</td>";
+    echo "<td>".$results['class']."</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+}
+
+//function to view all staff subjects
+function viewAllStaffSubjects()
+{
+  $sql = "SELECT staffid, subject, class FROM staffSubjects";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<table>";
+  echo "<tr><th>Staff ID</th><th>Subject</th><th>Class</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    echo "<tr>";
+    echo "<td>".$results['staffid']."</td>";
+    echo "<td>".$results['subject']."</td>";
+    echo "<td>".$results['class']."</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+}
+
+//function delete staff subjects
+function deleteStaffSubjects()
+{
+  $id = $_POST['id'];
+  $subject = $_POST['subject'];
+  $class = $_POST['class'];
+
+  $sql = "DELETE FROM staffSubjects WHERE staffid = '$id' AND subject = '$subject' AND class = '$class'";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  if ($run)
+  {
+    echo "Successfully Deleted";
+    header ("location: deleteStaffSubjects.php");
+  }
+  else
+  {
+    echo "Could not Delete.";
+  }
+}
 ?>

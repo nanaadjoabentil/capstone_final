@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min,js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -17,29 +17,19 @@
 
 <body>
 
-<p id = "heading"> Login </p>
-<br>
+  <br><br><br><br><br><br><br>
 
-     <form method="post" action="" class ="col s8" id = "form">
+     <form method="post" class="form-signin" id="form">
        <?php require_once('../../unsecure/processunsecure.php');?>
 
-       <div class="form-group">
-         <label for="username">Contact Email:</label>
-         <input type="text" class="form-control" id="username" name="username" required>
+       <div class="wrapper">
+           <h2 class="form-signin-heading">Login: Parents</h2><br>
+
+           <input type="text" class="form-control" name="username" placeholder="Username" required/><br>
+           <input type="password" class="form-control" name="password" placeholder="Password" required/><br>
+
+           <button class="btn btn-lg btn-primary btn-block" type="submit" name="parentlogin">Login</button>
+         </form>
        </div>
-
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
-
-        <div class="form-group">
-          <label for="studentid">Student ID:</label>
-          <input type="text" class="form-control" id="studentid" name="studentid" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary" name="parentlogin">Login</button>
-
-</form>
-</body>
-</html>
+    </body>
+  </html>

@@ -17,35 +17,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
+
 <body>
 
-<p id = "heading"> Student Health Information </p>
-<br>
+  <p id = "heading"> Staff Subjects and Classes: Add </p>
+  <br>
 
-<form method="post" id="form">
-  <div class="form-group">
-    <label for="id">Search by Student ID</label>
-    <input type="text" class="form-control" id="id" name="id">
-  </div>
+  <form method="post" id="form">
+       <?php require_once("processteacher.php");?>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+       <div class="form-group">
+         <label for="id">Staff ID:</label>
+         <input type="text" class="form-control" id="id" name="id">
+       </div>
 
-  </div>
-  </form>
-</body>
+       <div class="form-group">
+         <label for="name">Subject Taught:</label>
+         <input type="text" class="form-control" id="subject" name="subject" required>
+       </div>
+
+       <div class="form-group">
+         <label for="tel">Class/Grade:</label>
+         <input type="text" class="form-control" id="class" name="class" required>
+       </div>
+
+       <button type="submit" class="btn btn-primary" id="butns" name="addStaffSubjects">Add</button>
+
+   </form>
+  </body>
 </html>
-
-<?php
-
-require_once('processteacher.php');
-
-if (isset($_POST['searchHealth']))
-{
-  searchHealth();
-}
-else
-{
-  viewAllHealth();
-}
-
-?>

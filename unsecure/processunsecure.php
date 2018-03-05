@@ -124,10 +124,6 @@ function parentvalidateLogin()
   {
     echo "Please enter your password";
   }
-  else if (empty($_POST['studentid']))
-  {
-    echo "Please enter your child's student ID";
-  }
   else
   {
     //if none of them are empty, log the user in
@@ -140,7 +136,6 @@ function parentLogin()
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $studentid = $_POST['studentid'];
 
     $sql = "SELECT * FROM login WHERE username = '$username' && password = '$password'";
 

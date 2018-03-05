@@ -18,34 +18,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
 <body>
-
-<p id = "heading"> Student Health Information </p>
+<p id = "heading"> Add a health condition </p>
 <br>
 
 <form method="post" id="form">
-  <div class="form-group">
-    <label for="id">Search by Student ID</label>
-    <input type="text" class="form-control" id="id" name="id">
-  </div>
+  <?php require_once('processadmin.php');?>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+<!-- get student id and store in a session so i can save it in the database -->
+<div class="form-group">
+  <label for="id">Student ID::</label>
+  <input type="text" class="form-control" id="id" name="id" required>
+</div>
 
-  </div>
-  </form>
-</body>
+<div class="form-group">
+  <label for="condition">Condition:</label>
+  <input type="text" class="form-control" id="condition" name="condition" required>
+</div>
+
+<div class="form-group">
+  <label for="details">Details:</label>
+  <textarea class="form-control" rows="5" id="details" name="details" required></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary" id="butns" name="enterCondition">Submit</button>
+
+  </body>
 </html>
-
-<?php
-
-require_once('processteacher.php');
-
-if (isset($_POST['searchHealth']))
-{
-  searchHealth();
-}
-else
-{
-  viewAllHealth();
-}
-
-?>

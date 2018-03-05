@@ -20,15 +20,15 @@
 <form method="post" id="form">
 
  <div class="form-group">
-    <label for="id">Search for staff by ID or firstname</label>
+    <label for="id">Search for staff by ID</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" name="searchStaff">Search</button>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchStaff">Search</button>
 
 </div>
 </form>
-
-<?php require_once('processteacher.php');?>
 </body>
 </html>
+
+<?php require_once('processteacher.php');?>

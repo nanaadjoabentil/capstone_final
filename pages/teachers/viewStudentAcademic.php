@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
+  <img src="../../images/2.png" alt="pic" width="1270px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +19,7 @@
   </head>
 <body>
 
-<p id = "heading"> View student Academic Information </p>
+<p id = "heading"> View Student Academic Information </p>
 <br>
 
 <form method="post" id="form">
@@ -25,7 +28,7 @@
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" name="searchAcademic">Search</button>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchAcademic">Search</button>
 
 </div>
 </form>

@@ -19,33 +19,33 @@
   </head>
 <body>
 
-<p id = "heading"> Student Health Information </p>
+<p id = "heading"> Staff, Subjects and Classes: Search </p>
 <br>
 
 <form method="post" id="form">
   <div class="form-group">
-    <label for="id">Search by Student ID</label>
+    <label for="id">Search by Staff ID</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button><br><br>
 
   </div>
   </form>
-</body>
-</html>
 
 <?php
 
 require_once('processteacher.php');
 
-if (isset($_POST['searchHealth']))
+if (isset($_POST['searchStaffSubjects']))
 {
-  searchHealth();
+  searchStaffSubjects();
 }
 else
 {
-  viewAllHealth();
+  viewAllStaffSubjects();
 }
 
 ?>
+</body>
+</html>

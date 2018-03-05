@@ -1,5 +1,8 @@
 <!DOCTYPE html>
  <html lang="en">
+ <header>
+   <img src="../../images/2.png" alt="pic" width="1270px">
+ </header>
  <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,22 +20,16 @@
 
 <body>
 
-<p id = "heading"> Login </p>
-<br>
-
-     <form method="post" action="#" id="form">
+     <form method="post" action="#" id="form" class="form-signin">
        <?php require_once('processteacher.php');?>
 
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
-      <button type="submit" class="btn btn-primary" name="teacherlogin">Login</button>
+          <div class="wrapper">
+              <h2 class="form-signin-heading">Login: Teacher</h2><br>
+              <input type="text" class="form-control" name="username" placeholder="Username" required/><br>
+              <input type="password" class="form-control" name="password" placeholder="Password" required/><br>
 
-</form>
-</body>
-</html>
+              <button class="btn btn-lg btn-primary btn-block" type="submit" id="butns" name="teacherlogin">Login</button>
+            </form>
+          </div>
+      </body>
+  </html>

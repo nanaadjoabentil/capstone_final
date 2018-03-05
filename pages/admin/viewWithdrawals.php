@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-  <img src="../../images/2.png" alt="pic" width="1270px">
+  <img src="../../images/1.png" alt="pic" width="1235px" height="300px">
 </header>
   <head>
     <meta charset="utf-8">
@@ -17,35 +17,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
+
 <body>
 
-<p id = "heading"> Student Health Information </p>
+<p id = "heading"> View Inventory Withdrawals</p>
 <br>
 
-<form method="post" id="form">
-  <div class="form-group">
-    <label for="id">Search by Student ID</label>
-    <input type="text" class="form-control" id="id" name="id">
-  </div>
+  <form method="post" action="#" id="form">
+    <?php require_once('processadmin.php');?>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+      <div class="form-group">
+        <label for="item_name">Search by Item Name:</label>
+        <input type="text" class="form-control" id="searchitem" name="searchitem">
+      </div>
 
-  </div>
+    <button type="submit" class="btn btn-primary" id="butns" name="searchWithdrawals">Search</button>
   </form>
+  <br>
+
+  <?php
+  require_once('processadmin.php');
+  if (isset($_POST['searchWithdrawals']))
+  {
+    searchWithdrawals();
+  }
+  else
+  {
+    viewWithdrawals();
+  }
+  ?>
+
 </body>
 </html>
-
-<?php
-
-require_once('processteacher.php');
-
-if (isset($_POST['searchHealth']))
-{
-  searchHealth();
-}
-else
-{
-  viewAllHealth();
-}
-
-?>

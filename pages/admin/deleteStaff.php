@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-  <img src="../../images/2.png" alt="pic" width="1270px">
+  <img src="../../images/5.png" alt="pic" width="1235px" height="300px">
 </header>
   <head>
     <meta charset="utf-8">
@@ -17,35 +17,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
-<body>
-
-<p id = "heading"> Student Health Information </p>
+<p id = "heading"> Delete a Staff Profile </p>
 <br>
 
 <form method="post" id="form">
-  <div class="form-group">
-    <label for="id">Search by Student ID</label>
+
+ <div class="form-group">
+    <label for="id">Delete by ID:</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+  <button type="submit" class="btn btn-primary" id="butns" name="deleteStaff">Delete</button>
 
-  </div>
-  </form>
-</body>
-</html>
+</div>
+</form>
 
 <?php
 
-require_once('processteacher.php');
-
-if (isset($_POST['searchHealth']))
+require_once('processadmin.php');
+if (isset($_POST['deleteStaff']))
 {
-  searchHealth();
+  deleteStaff();
 }
 else
 {
-  viewAllHealth();
+  viewAllStaff();
 }
 
 ?>
+</body>
+</html>

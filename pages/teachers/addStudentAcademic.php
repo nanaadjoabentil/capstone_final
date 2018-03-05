@@ -1,5 +1,8 @@
 <!DOCTYPE html>
  <html lang="en">
+ <header>
+   <img src="../../images/2.png" alt="pic" width="1270px">
+ </header>
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,14 +34,17 @@
     <label for="subject">Subject:</label>
     <input type="text" class="form-control" id="subject" name="subject" required>
   </div>
+
   <div class="form-group">
     <label for="grade">Grade:</label>
     <input type="text" class="form-control" id="grade" name="grade" required>
   </div>
+
   <div class="form-group">
     <label for="class">Class:</label>
     <input type="text" class="form-control" id="class"  name="class"required>
   </div>
+
   <div class="form-group">
   <label for="term">Select Term:</label>
   <select class="form-control" id="term" name="term">
@@ -47,15 +53,18 @@
     <option value="May-August">Third Term: May to August</option>
   </select>
 </div>
+
 <div class="form-group">
   <label for="year">Year:</label>
   <input type="text" class="form-control" id="year" name="year" required>
 </div>
+
 <div class="form-group">
   <label for="teacher">Teacher ID:</label>
   <input type="text" class="form-control" id="teacher" name="teacher" required>
 </div>
-<button type="submit" class="btn btn-primary" name="addAcademic">Submit</button>
+
+<button type="submit" class="btn btn-primary" id="butns" name="addAcademic">Submit</button>
 
 </body>
 </html>

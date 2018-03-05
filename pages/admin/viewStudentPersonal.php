@@ -17,35 +17,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
+
 <body>
 
-<p id = "heading"> Student Health Information </p>
+<p id = "heading"> Student Personal Information </p>
 <br>
 
 <form method="post" id="form">
+
   <div class="form-group">
-    <label for="id">Search by Student ID</label>
+    <label for="id">Search:</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
+ <button type="submit" class="btn btn-primary" id="butns" name="searchPersonal">Search</button><br><br>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+ </div>
+ </form>
 
-  </div>
-  </form>
-</body>
-</html>
+<?php require_once('processadmin.php');
 
-<?php
-
-require_once('processteacher.php');
-
-if (isset($_POST['searchHealth']))
+//if search button has been clicked and the form field is not empty, search.
+if (isset($_POST['searchPersonal']) && !empty($_POST['id']))
 {
-  searchHealth();
+  viewStudentPersonal();
 }
 else
 {
-  viewAllHealth();
+  //if not, view all students.
+  viewAllStudents();
 }
 
 ?>
+</body>
+</html>
