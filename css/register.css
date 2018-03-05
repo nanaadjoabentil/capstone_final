@@ -28,10 +28,10 @@ th
 }
 
 
-tr:nth-child(odd)
+/* tr:nth-child(odd)
 {
 background-color: #b3ffb3;
-}
+} */
 
 td
 {
