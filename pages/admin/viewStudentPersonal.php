@@ -26,7 +26,7 @@
 <form method="post" id="form">
 
   <div class="form-group">
-    <label for="id">Search:</label>
+    <label for="id">Search by student ID:</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
  <button type="submit" class="btn btn-primary" id="butns" name="searchPersonal">Search</button><br><br>
@@ -48,5 +48,6 @@ else
 }
 
 ?>
+
 </body>
 </html>

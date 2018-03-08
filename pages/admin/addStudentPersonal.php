@@ -45,13 +45,14 @@
          <input type="date" class="form-control" placeholder="yyyy/mm/dd" id="dob" name="dob" required>
        </div>
 
-       <p>
-         Gender: <br>
-        <input name="group1" type="radio" id="genderM" value = "Male" required/>
-        <label for="genderM">Male</label>
-        <input name="group1" type="radio" id="genderF" value = "Female" required/>
-        <label for="genderF">Female</label>
-      </p>
+      <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select class="form-control" id="gender" name="group1">
+        <option value="" disabled selected>Choose...</option>
+        <option value="M" id="genderM">Male</option>
+        <option value="F" id="genderF">Female</option>
+      </select>
+    </div>
 
        <div class="form-group">
          <label for="pobox">Postal Address:</label>

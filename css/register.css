@@ -3,7 +3,8 @@
 body {
   margin-left: 20px;
   margin-right: 20px;
-  background-color: #ffffcc;
+  /* background-color: #ffffcc; */
+  background-color: #FFFAF0;
 }
 
 #heading
@@ -22,16 +23,18 @@ body {
 
 th
 {
-  background-color: #543233 ;
+  /* background-color: #543233; */
+  background-color: #162d41;
   color: white;
   width: 1200px;
 }
 
 
-/* tr:nth-child(odd)
+tr:nth-child(odd)
 {
-background-color: #b3ffb3;
-} */
+/* background-color: #b3ffb3; */
+background-color: #e6e6ff;
+}
 
 td
 {

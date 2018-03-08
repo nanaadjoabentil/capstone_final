@@ -17,11 +17,6 @@ else if (isset($_POST['addInventory']))
 {
   addInventory();
 }
-else if (isset($_POST['searchPersonal']))
-{
-  $id = $_POST['id'];
-  viewStudentPersonal($id);
-}
 else if(isset($_POST['studentFinancial']))
 {
   addFinancial();
@@ -121,8 +116,6 @@ function registerStudent()
   if($run)
   {
     echo $firstname." ". $lastname."'s' student ID is". " ".$id;
-    //if query works, redirect to login page
-    header("location: adminindex.php");
     //create popup window to show child's id.
   }
   else
