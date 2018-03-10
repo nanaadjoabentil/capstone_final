@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
+  <img src="../../images/2.png" alt="pic" width="1270px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,21 +17,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
-<p id = "heading"> Delete a Staff Profile </p>
+<body>
+
+<p id = "heading"> Staff, Subjects and Classes: Search </p>
 <br>
 
 <form method="post" id="form">
-
- <div class="form-group">
-    <label for="id">Delete by ID:</label>
+  <div class="form-group">
+    <label for="id">Search by Staff ID</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="deleteStaff">Delete</button>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button><br><br>
 
-</div>
-</form>
+  </div>
+  </form>
+
+<?php
+
+require_once('../teachers/processteacher.php');
+
+if (isset($_POST['searchStaffSubjects']))
+{
+  searchStaffSubjects();
+}
+else
+{
+  viewAllStaffSubjects();
+}
+
+?>
 </body>
 </html>
-
-<?php require_once('processteacher.php'); ?>

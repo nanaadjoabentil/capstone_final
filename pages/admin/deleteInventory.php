@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<header>
+<!-- <header>
   <img src="../../images/1.png" alt="pic" width="1235px" height="300px">
-</header>
+</header> -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

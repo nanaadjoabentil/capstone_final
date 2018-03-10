@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <header>
-  <img src="../../images/1.png" alt="pic" width="1235px" height="300px">
-</header> -->
+<header>
+  <img src="../../images/2.png" alt="pic" width="1270px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,35 +17,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
-
 <body>
 
-<p id = "heading"> View Inventory Withdrawals</p>
+<p id = "heading"> View Student Academic Information </p>
 <br>
 
-  <form method="post" action="#" id="form">
-    <?php require_once('processadmin.php');?>
+<form method="post" id="form">
+  <div class="form-group">
+    <label for="id">Search by Student ID Number</label>
+    <input type="text" class="form-control" id="id" name="id">
+  </div>
 
-      <div class="form-group">
-        <label for="item_name">Search by Item Name:</label>
-        <input type="text" class="form-control" id="searchitem" name="searchitem">
-      </div>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchAcademic">Search</button>
 
-    <button type="submit" class="btn btn-primary" id="butns" name="searchWithdrawals">Search</button>
-  </form>
-  <br>
+</div>
+</form>
 
-  <?php
-  require_once('processadmin.php');
-  if (isset($_POST['searchWithdrawals']))
-  {
-    searchWithdrawals();
-  }
-  else
-  {
-    viewWithdrawals();
-  }
-  ?>
+<?php require_once('../teachers/processteacher.php');
 
+if (isset($_POST['searchAcademic']))
+{
+  searchAcademic();
+}
+else
+{
+  viewAllAcademic();
+}
+?>
 </body>
 </html>

@@ -20,10 +20,10 @@
 <p id = "heading"> Dashboard </p>
 <br>
 
-<?php
-require_once('processteacher.php');
- ?>
-
 Welcome to the staff dashboard.
+<br><br><br>
+
+<a href="staff.php">Staff Links</a><br><br>
+<a href="student.php">Student Links</a>
 </body>
 </html>

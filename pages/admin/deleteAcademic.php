@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <header>
-  <img src="../../images/1.png" alt="pic" width="1235px" height="300px">
-</header> -->
+<header>
+  <img src="../../images/2.png" alt="pic" width="1270px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,32 +20,33 @@
 
 <body>
 
-<p id = "heading"> View Inventory Withdrawals</p>
-<br>
-
-  <form method="post" action="#" id="form">
-    <?php require_once('processadmin.php');?>
-
-      <div class="form-group">
-        <label for="item_name">Search by Item Name:</label>
-        <input type="text" class="form-control" id="searchitem" name="searchitem">
-      </div>
-
-    <button type="submit" class="btn btn-primary" id="butns" name="searchWithdrawals">Search</button>
-  </form>
+  <p id="heading"> Delete an Academic Record </p>
   <br>
 
-  <?php
-  require_once('processadmin.php');
-  if (isset($_POST['searchWithdrawals']))
-  {
-    searchWithdrawals();
-  }
-  else
-  {
-    viewWithdrawals();
-  }
-  ?>
+  <form method="post" id="form">
 
-</body>
+      <div class="form-group">
+        <label for="id">ID of Record to Delete:</label>
+        <input type="text" class="form-control" id="id" name="id">
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="butns" name="deleteAcademic">Delete Record</button><br><br>
+
+      </div>
+      </form>
+
+      <?php
+
+      require_once('../teachers/processteacher.php');
+
+      if (isset($_POST['deleteAcademic']))
+      {
+        deleteAcademic();
+      }
+      else
+      {
+        viewAllAcademic();
+      }
+      ?>
+  </body>
 </html>

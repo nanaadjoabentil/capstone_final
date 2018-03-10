@@ -28,7 +28,7 @@
            <input type="text" class="form-control" name="username" placeholder="Username" required/><br>
            <input type="password" class="form-control" name="password" placeholder="Password" required/><br>
 
-           <button class="btn btn-lg btn-primary btn-block" type="submit" name="parentlogin">Login</button>
+           <button class="btn btn-lg btn-primary btn-block" type="submit" id="butns" name="parentlogin">Login</button>
          </form>
        </div>
     </body>
