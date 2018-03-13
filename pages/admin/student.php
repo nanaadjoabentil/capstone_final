@@ -7,9 +7,9 @@
 <body>
   <nav>
     <ul>
-      <a href="addStudentPersonal.php"><button id="dbutton"><img src="../../images/plus.png"><br><br>Add a New Student</button></a>
-      <a href="addStudentHealth.php"><button id="dbutton"><img src="../../images/plus.png"><br><br>Add Student's Health Information</button></a>
-      <a href="addStudentFinancial.php"><button id="dbutton"><img src="../../images/plus.png"><br><br>Add Student Financial Information</button></a>
+      <a href="addStudentPersonal.php"><button id="dbutton"><br><br>Add a New Student</button></a>
+      <a href="addStudentHealth.php"><button id="dbutton"><br><br>Add Student's Health Information</button></a>
+      <a href="addStudentFinancial.php"><button id="dbutton"><br><br>Add Student Financial Information</button></a>
       <a href="../teachers/viewStudentAcademic.php"><button id="dbutton">View Student Academic Information</button></a>
       <a href="viewStudentHealth.php"><button id="dbutton">View Student Health Information</button></a>
       <a href="viewStudentFinancial.php"><button id="dbutton">View Student Financial Information</button></a>

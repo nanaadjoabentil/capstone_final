@@ -91,10 +91,11 @@ function addAcademic()
   $term = $_POST['term'];
   $year = $_POST['year'];
   $teacher = $_POST['teacher'];
+  $score = $_POST['score'];
 
   $login = new Connect;
 
-  $sql = "INSERT INTO academic(sid,subject,teacher,grade,class,term,year) VALUES ('$id','$subject','$teacher','$grade','$class','$term','$year')";
+  $sql = "INSERT INTO academic(sid,subject,teacher,score,grade,class,term,year) VALUES ('$id','$subject','$teacher','$score','$grade','$class','$term','$year')";
 
   $run = $login->query($sql);
 
@@ -112,7 +113,7 @@ function addAcademic()
 function searchAcademic()
 {
   $id = $_POST['id'];
-  $sql = "SELECT sid,subject,teacher,grade,class,term,year FROM academic WHERE sid = '$id'";
+  $sql = "SELECT aID,sid,subject,teacher,score,grade,class,term,year FROM academic WHERE sid = '$id'";
 
   $login = new Connect;
 
@@ -120,16 +121,18 @@ function searchAcademic()
 
     echo "<br>";
     echo "<table>";
-    echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's Name</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
+    echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's ID</th><th>Score</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
 
     while ($results = $login->fetch())
     {
       //try and display teacher's names instead of ids.
       echo "<tr>";
+      echo "<td>".$results['aID']."</td>";
       echo "<td>".$results['sid']."</td>";
       echo "<td>".$results['subject']."</td>";
       // echo "<td>".$ans['name']."</td>";
       echo "<td>".$results['teacher']."</td>";
+      echo "<td>".$results['score']."</td>";
       echo "<td>".$results['grade']."</td>";
       echo "<td>".$results['class']."</td>";
       echo "<td>".$results['term']."</td>";
@@ -150,7 +153,7 @@ function viewAllAcademic()
 
   echo "<br>";
   echo "<table>";
-  echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's Name</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's ID</th><th>Score</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
 
   while ($results = $login->fetch())
   {
@@ -161,6 +164,7 @@ function viewAllAcademic()
     echo "<td>".$results['subject']."</td>";
     // echo "<td>".$ans['name']."</td>";
     echo "<td>".$results['teacher']."</td>";
+    echo "<td>".$results['score']."</td>";
     echo "<td>".$results['grade']."</td>";
     echo "<td>".$results['class']."</td>";
     echo "<td>".$results['term']."</td>";

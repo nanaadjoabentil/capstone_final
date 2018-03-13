@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Student Page </title>
+  <title> Inventory Page </title>
+  <link rel="stylesheet" href="../../css/dashboard.css">
 </head>
 <body>
   <nav>
     <ul>
-      <li><a href="addInventory.php">Add a New Inventory Item</a></li>
-      <li><a href="viewInventory.php">View Inventory Items</a></li>
-      <li><a href="viewWithdrawals.php">View Inventory Withdrawals</a></li>
-      <li><a href="withdrawals.php">Withdraw from Inventory</a></li>
-      <li><a href="deleteInventory.php">Delete Inventory Items</a></li>
+      <a href="addInventory.php"><button id="dbutton">Add a New Inventory Item</button></a>
+      <a href="viewInventory.php"><button id="dbutton">View Inventory Items</button></a>
+      <a href="viewWithdrawals.php"><button id="dbutton">View Inventory Withdrawals</button></a>
+      <a href="withdrawals.php"><button id="dbutton">Withdraw from Inventory</button></a>
+      <a href="deleteInventory.php"><button id="dbutton">Delete Inventory Items</button></a>
     </ul>
   </nav>
 </body>
