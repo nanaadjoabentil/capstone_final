@@ -1,4 +1,5 @@
 <?php
+// including the database
 require_once('../../database/connect.php');
 
 if (isset($_POST['adminlogin']))
@@ -102,8 +103,9 @@ function registerStudent()
 
   // $passwordhash = password_hash($pwd, PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO student(id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,parent1name,parent1number,parent2name,parent2number,contactemail) VALUES
-  ('$id','$firstname','$middlename','$lastname','$dob','$gender','$pobox','$parent1name','$parent1num','$parent2name','$parent2num','$email')";
+  $sql = "INSERT INTO student(id,firstname,middlename,lastname,dateofbirth,gender,postaladdress,
+    parent1name,parent1number,parent2name,parent2number,contactemail) VALUES ('$id','$firstname','$middlename',
+      '$lastname','$dob','$gender','$pobox','$parent1name','$parent1num','$parent2name','$parent2num','$email')";
 
 // echo $sql;
   //new instance of database class
@@ -351,7 +353,7 @@ function viewAllHealth()
 
       while ($results = $login->fetch())
       {
-        echo $results['cid'].'<br><br>';
+        echo "Record ID: ".$results['cid'].'<br><br>';
         echo "Student ID: ". $results['sid'].'<br><br>';
         echo "Health Condition: ". $results['health_condition'].'<br><br>';
         echo "Details: ". $results['details'].'<br><br><br><br>';
@@ -686,19 +688,19 @@ function searchFinancial()
   $run = $login->query($sql);
 
   echo "<table>";
-  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th><th>Date Time</th></tr>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Arrears</th><th>Date Time</th></tr>";
 
   while ($results = $login->fetch())
   {
     echo "<br>";
     echo "<tr>";
     echo "<td>".$results['fid']."</td>";
-    echo "<td>".$results['sid']."<td>";
+    echo "<td>".$results['sid']."</td>";
     echo "<td>".$results['bill']."</td>";
     echo "<td>".$results['details']."</td>";
     echo "<td>".$results['amount_paid']."</td>";
-    echo "<td>".$results['fees_arrears']."<td>";
-    echo "<td>".$results['date']."<td>";
+    echo "<td>".$results['fees_arrears']."</td>";
+    echo "<td>".$results['date']."</td>";
     echo "</tr>";
   }
 
@@ -720,19 +722,19 @@ function viewAllFinancial()
   $run = $login->query($sql);
 
   echo "<table>";
-  echo "<tr><th>Record ID</th><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Amount Outstanding/Arrears</th><th>Date Time</th></tr>";
+  echo "<tr><th>Student ID</th><th>Bill</th><th>Details</th><th>Amount Paid</th><th>Arrears</th><th>DateTime</th></tr>";
 
   while ($results = $login->fetch())
   {
     // echo "<br>";
     echo "<tr>";
-    echo "<td>".$results['fid']."</td>";
-    echo "<td>".$results['sid']."<td>";
+    // echo "<td>".$results['fid']."</td>";
+    echo "<td>".$results['sid']."</td>";
     echo "<td>".$results['bill']."</td>";
     echo "<td>".$results['details']."</td>";
     echo "<td>".$results['amount_paid']."</td>";
-    echo "<td>".$results['fees_arrears']."<td>";
-      echo "<td>".$results['date']."<td>";
+    echo "<td>".$results['fees_arrears']."</td>";
+    echo "<td>".$results['date']."</td>";
     echo "</tr>";
   }
   echo "<table>";
@@ -742,22 +744,23 @@ function viewAllFinancial()
 function deleteFinancial()
 {
   $id = $_POST['id'];
-  $date = $_POST['id'];
+  $date = $_POST['date'];
   $time = $_POST['time'];
   $datetime = $date ." ". $time;
 
-  echo $datetime;
-
-  $sql = "SELECT fid, sid FROM financial where date = '$datetime'";
+  $sql = "DELETE FROM financial where date = '$datetime'";
 
   $login = new Connect;
 
   $run = $login->query($sql);
 
-  while ($results = $login->fetch())
+  if($run)
   {
-    echo $results['fid'];
-    echo $results['sid'];
+    echo "Successfully deleted";
+  }
+  else
+  {
+    echo "Could not delete";
   }
 }
 //-------------------------------------------------------------STAFF INFO-----------------------------------------------------------------------------------------
@@ -958,5 +961,179 @@ function deleteStaff()
     echo "Uh Oh! Something went wrong.";
   }
 }
+
+//function to view all academic information from the academic table
+function viewAllAcademic()
+{
+  $sql = "SELECT * FROM academic";
+
+  $login = new Connect;
+
+  $run = $login->query($sql);
+
+  echo "<br>";
+  echo "<table>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's ID</th><th>Score</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
+
+  while ($results = $login->fetch())
+  {
+    //try and display teacher's names instead of ids.
+    echo "<tr>";
+    echo "<td>".$results['aID']."</td>";
+    echo "<td>".$results['sid']."</td>";
+    echo "<td>".$results['subject']."</td>";
+    // echo "<td>".$ans['name']."</td>";
+    echo "<td>".$results['teacher']."</td>";
+    echo "<td>".$results['score']."</td>";
+    echo "<td>".$results['grade']."</td>";
+    echo "<td>".$results['class']."</td>";
+    echo "<td>".$results['term']."</td>";
+    echo "<td>".$results['year']."</td>";
+    echo "</tr>";
+  }
+  echo '</table>';
+}
+
+
+if(isset($_POST['student']))
+{
+  dashboardstudent();
+}
+//function for three buttons dashboard
+function dashboardstudent()
+{
+  echo
+    '<nav>
+      <ul>
+      <form method="post">
+        <a href="academic.php"><button id="dbutton" name="academic"><br><br>Academic Information</button></a>
+        <a href="health.php"><button id="dbutton" name="health"><br><br>Health Information</button></a>
+        <a href="personal.php"><button id="dbutton" name="personal"><br><br>Personal Information</button></a
+        <a href="financial.php"><button id="dbutton" name="financial"><br><br>Financial Information</button></a>
+        </form>
+      </ul>
+    </nav>';
+}
+
+if(isset($_POST['academic']))
+{
+  header("location: academic.php");
+}
+
+if(isset($_POST['health']))
+{
+  header("location: health.php");
+}
+
+if(isset($_POST['personal']))
+{
+  header("location: personal.php");
+}
+
+if(isset($_POST['financial']))
+{
+  header("location: financial.php");
+}
+
+
+if(isset($_POST['staff']))
+{
+  dashboardstaff();
+}
+
+function dashboardstaff()
+{
+  echo
+  '<nav>
+    <ul>
+    <form method="post">
+      <a href="addStaff.php"><button id="dbutton" name="addprofile"><br>Add New Staff Profile</button></a>
+      <button id="dbutton" name="addcns">Add Staff Subjects and Classes Information</button>
+      <a href="viewStaff.php"><button id="dbutton" name="viewprofile"><br>View Staff Profile</button></a>
+      <a href="updateStaff.php"><button id="dbutton" name="updateprofile"><br>Update Staff Personal Information</button></a>
+      <a href="../teachers/viewStaffSubjects.php"><button id="dbutton" name="viewcns">View Staff Subjects and Classes Information</button></a>
+      <a href="deleteStaff.php"><button id="dbutton" name="deleteprofile"><br>Delete Staff Personal Information</button></a>
+      <a href="../teachers/deleteStaffSubjects.php"><button id="dbutton" name="deletecns">Delete Staff Subjects and Classes Information</button></a>
+      </form>
+    </ul>
+  </nav>';
+}
+
+if(isset($_POST['addcns']))
+{
+  header("location: ../teachers/addStaffSubjects.php");
+}
+if(isset($_POST['viewprofile']))
+{
+  header("location: viewStaff.php");
+}
+if(isset($_POST['updateprofile']))
+{
+  header("location: updateStaff.php");
+}
+if(isset($_POST['viewcns']))
+{
+  header("location: ../teachers/viewStaffSubjects.php");
+}
+if(isset($_POST['deleteprofile']))
+{
+  header("location: deleteStaff.php");
+}
+if(isset($_POST['deletecns']))
+{
+  header("location: ../teachers/deleteStaffSubjects.php");
+}
+if(isset($_POST['addprofile']))
+{
+  header("location: addStaff.php");
+}
+
+
+
+
+if(isset($_POST['inventory']))
+{
+  dashboardinventory();
+}
+
+function dashboardinventory()
+{
+  echo
+  '<nav>
+    <ul>
+    <form method="post">
+      <a href="addInventory.php"><button id="dbutton" name="add">Add a New Inventory Item</button></a>
+      <a href="viewInventory.php"><button id="dbutton" name="view">View Inventory Items</button></a>
+      <a href="viewWithdrawals.php"><button id="dbutton" name="viewwithdrawals">View Inventory Withdrawals</button></a>
+      <a href="withdrawals.php"><button id="dbutton" name="withdraw">Withdraw from Inventory</button></a>
+      <a href="deleteInventory.php"><button id="dbutton" name="delete">Delete Inventory Items</button></a>
+      </form>
+    </ul>
+  </nav>';
+}
+
+if(isset($_POST['add']))
+{
+  header("location: addInventory.php");
+}
+if(isset($_POST['view']))
+{
+  header("location: viewInventory.php");
+}
+if(isset($_POST['viewwithdrawals']))
+{
+  header("location: viewWithdrawals.php");
+}
+if(isset($_POST['withdraw']))
+{
+  header("location: withdrawals.php");
+}
+if(isset($_POST['delete']))
+{
+  header("location: deleteInventory.php");
+}
+
+
+
 
 ?>

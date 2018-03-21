@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<header>
+  <img src="../../images/2.png" alt="pic" width="1235px" height="300px">
+</header>
 <head>
   <title> Inventory Page </title>
   <link rel="stylesheet" href="../../css/dashboard.css">

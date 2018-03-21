@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
+  <img src="../../images/2.png" alt="pic" width="1235px" height="300px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +23,7 @@
   <br><br><br><br><br><br><br>
 
      <form method="post" class="form-signin" id="form">
-       <?php require_once('../../unsecure/processunsecure.php');?>
+       <?php require_once('processparent.php');?>
 
        <div class="wrapper">
            <h2 class="form-signin-heading">Login: Parents</h2><br>
@@ -33,3 +36,13 @@
        </div>
     </body>
   </html>
+
+<?php
+
+if(isset($_POST['parentlogin']))
+{
+  $username = $_POST['username'];
+  viewAcademic();
+}
+
+?>

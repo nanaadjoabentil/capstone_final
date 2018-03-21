@@ -29,7 +29,7 @@
       <?php require_once('processadmin.php');?>
 
         <div class="form-group">
-          <label for="id">Student ID::</label>
+          <label for="id">Student ID:</label>
           <input type="text" class="form-control" id="id" name="id" required>
         </div>
 

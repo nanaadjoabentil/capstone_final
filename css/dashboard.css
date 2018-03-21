@@ -1,10 +1,11 @@
 #dbutton
 {
-  width: 300px;
+  width: 270px;
   height: 270px;
-  margin: 40px;
+  margin: 10px;
   /* padding: 5px; */
   color: black;
+  text-align: center;
   background-color: white;
   border-color: black;
 }

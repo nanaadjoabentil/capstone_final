@@ -77,7 +77,21 @@
 
   <div class="form-group">
     <label for="class">Class:</label>
-    <input type="text" class="form-control" id="class"  name="class"required>
+    <select class="form-control" id="class" name="class">
+      <option>Choose...</option>
+      <option value="KG 1">KG 1</option>
+      <option value="KG 2">KG 2</option>
+      <option value="Class 1">Class 1</option>
+      <option value="Class 2">Class 2</option>
+      <option value="Class 3">Class 3</option>
+      <option value="Class 4">Class 4</option>
+      <option value="Class 5">Class 5</option>
+      <option value="Class 6">Class 6</option>
+      <option value="JHS 1">JHS 1</option>
+      <option value="JHS 2">JHS 2</option>
+      <option value="JHS 3">JHS 3</option>
+    </select>
+    <!-- <input type="text" class="form-control" id="class"  name="class"required> -->
   </div>
 
   <div class="form-group">

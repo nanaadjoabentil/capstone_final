@@ -38,7 +38,9 @@
     <input type="text" class="form-control" id="class" name="class">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="deleteStaffSubjects">Delete</button><br><br>
+  <button type="submit" class="btn btn-primary" id="butns" name="deleteStaffSubjects">Delete</button>
+  <a href="../admin/tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+  <br><br>
 
   </div>
   </form>

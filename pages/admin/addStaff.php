@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <header>
-  <img src="../../images/5.png" alt="pic" width="1235px" height="300px">
-</header> -->
+<header>
+  <img src="../../images/2.png" alt="pic" width="1235px" height="300px">
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,6 +54,8 @@
          <input type="text" class="form-control" id="noknumber" name="noknumber" required>
        </div>
        <button type="submit" class="btn btn-primary" id="butns" name="registerTeacher">Register</button>
+       <a href="tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+       
 
    </body>
  </html>

@@ -2,9 +2,10 @@
 
 body {
   margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 50px;
   /* background-color: #ffffcc; */
   background-color: #FFFAF0;
+  position: absolute;
 }
 
 #heading
@@ -48,6 +49,7 @@ td
 {
   margin-top: 10px;
   margin-bottom: 5px;
+  padding: 8px;
 }
 
 footer
@@ -58,6 +60,8 @@ footer
   color: white;
   padding: 30px;
   padding-left: 530px;
+  position: relative;
+  margin-top: 10px;
 }
 
 #seeall
@@ -76,6 +80,7 @@ footer
   margin: 0 auto;
   background-color: #f0ebfa;
   border: 1px solid #f0ebfa;
+  margin-top: -160px;
 
   .form-signin-heading,
 	.checkbox {
@@ -109,4 +114,10 @@ footer
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
+}
+
+#parentswelcome
+{
+  text-align: center;
+  color: teal;
 }

@@ -28,7 +28,9 @@
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button><br><br>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button>
+  <a href="../admin/tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+  <br><br>
 
   </div>
   </form>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <header>
+<header>
   <img src="../../images/2.png" alt="pic" width="1270px">
-</header> -->
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,12 +26,12 @@
   <form method="post" id="form">
 
     <div class="form-group">
-      <label for="id">Delete information for ID:</label>
+      <label for="id">Student ID Number:</label>
       <input type="text" class="form-control" id="id" name="id">
     </div>
 
       <div class="form-group">
-        <label for="id">Condition to Delete:</label>
+        <label for="id">Condition:</label>
         <input type="text" class="form-control" id="condition" name="condition">
       </div>
 

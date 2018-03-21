@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <header>
+<header>
   <img src="../../images/2.png" alt="pic" width="1270px">
-</header> -->
+</header>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
   </head>
 
 <body>
-<p id = "heading"> Student Financial Information </p>
+<p id = "heading"> Student Financial Information : Delete </p>
 <br>
 <form method="post" id="form">
 

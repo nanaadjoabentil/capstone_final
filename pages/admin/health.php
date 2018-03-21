@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-  <img src="../../images/1.png" alt="pic" width="1235px" height="300px">
+  <img src="../../images/2.png" alt="pic" width="1235px" height="300px">
 </header>
   <head>
     <meta charset="utf-8">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../../css/dashboard.css"  media="screen,projection"/>
     <script type="text/javascript" src="../../js/bootstrap.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 
@@ -17,36 +18,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
-
 <body>
 
-<p id = "heading"> View Inventory Withdrawals</p>
+<p id = "heading"> Student Health Information </p>
 <br>
 
-  <form method="post" action="#" id="form">
-    <?php require_once('processadmin.php');?>
-
-      <div class="form-group">
-        <label for="item_name">Search by Item Name:</label>
-        <input type="text" class="form-control" id="searchitem" name="searchitem">
-      </div>
-
-    <button type="submit" class="btn btn-primary" id="butns" name="searchWithdrawals">Search</button>
+  <form method="post" id="form">
     <a href="tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+    <button type="submit" class="btn btn-primary" id="butns" name="add">Add New</button>
+    <button type="submit" class="btn btn-primary" id="butns" name="search">Search</button>
+    <button type="submit" class="btn btn-primary" id="butns" name="delete">Delete</button>
+    <br><br><br>
+    <?php
+    require_once("processadmin.php");
+
+    if (isset($_POST['search']))
+    {
+      header("location: viewStudentHealth.php");
+    }
+    else if (isset($_POST['delete']))
+    {
+      header("location: deleteHealth.php");
+    }
+    else if (isset($_POST['add']))
+    {
+      header("location: addStudentHealth.php");
+    }
+    else
+    {
+      echo '<h3> All Health Information </h3>'.'<br>';
+      viewAllHealth();
+    }
+    ?>
   </form>
-  <br>
 
-  <?php
-  require_once('processadmin.php');
-  if (isset($_POST['searchWithdrawals']))
-  {
-    searchWithdrawals();
-  }
-  else
-  {
-    viewWithdrawals();
-  }
-  ?>
+  <footer>
+    &copy2018  Nana Adjoa Bentil
+  </footer>
 
-</body>
-</html>
+  </body>
+  </html>
