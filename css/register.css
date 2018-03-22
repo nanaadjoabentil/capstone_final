@@ -77,10 +77,9 @@ footer
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
-  margin: 0 auto;
+  margin: auto;
   background-color: #f0ebfa;
   border: 1px solid #f0ebfa;
-  margin-top: -160px;
 
   .form-signin-heading,
 	.checkbox {

@@ -24,18 +24,19 @@
 <p id = "heading"> Dashboard </p>
 <br>
 
-<!-- <h4 id="parentswelcome"> Welcome to your personalised parents' dashboard, <!?php session_start(); echo $_SESSION['username']; ?> </h4><br>
-You can access academic, financial, health and personal information about your child from here. <br><br>
-To access these, click on the tab with the name of the information you would like to see. <br><br> -->
-<!-- Click on the various tabs to see the various categories of information about your ward. -->
+<h4 id="parentswelcome"> Welcome ADMIN!</h4><br>
+You can access information about students, staff and inventory from here. <br><br>
+To access these, click on the tab with the name of the information you would like to see. <br><br>
+
         <form method="post" id="form">
+          <a href="index.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
           <button type="submit" class="btn btn-primary" id="butns" name="student">Student Information</button>
           <button type="submit" class="btn btn-primary" id="butns" name="staff">Staff Information</button>
           <button type="submit" class="btn btn-primary" id="butns" name="inventory">Inventory Information</button>
           <br><br><br>
           <?php require_once("processadmin.php"); ?>
         </form>
-<br><br><br><br><br><br>
+
         <footer>
           &copy2018  Nana Adjoa Bentil
         </footer>

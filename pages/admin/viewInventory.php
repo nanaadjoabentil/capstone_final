@@ -36,7 +36,7 @@
   <a href="tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 
 </div>
-</form>
+</form><br>
 
 <?php
 require_once('processadmin.php');
@@ -55,6 +55,10 @@ else
 }
 
 ?>
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
+
 
 </body>
 </html>

@@ -74,7 +74,7 @@ function adminLogin()
       if ($results)
       {
         //echo "Successful Login as Admin";
-        header("location:adminindex.php");
+        header("location:tindex.php");
       }
       else
       {
@@ -973,17 +973,27 @@ function viewAllAcademic()
 
   echo "<br>";
   echo "<table>";
-  echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's ID</th><th>Score</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
+  echo "<tr><th>Record ID</th><th>Student ID</th><th>Subject Name</th><th>Teacher's Name</th><th>Score</th><th>Grade</th><th>Class</th><th>Term</th><th>Year</th></tr>";
 
   while ($results = $login->fetch())
   {
-    //try and display teacher's names instead of ids.
+    $tid = $results['teacher'];
+
+    $login2 = new Connect;
+
+    $sql2 = "SELECT name FROM staffProfile WHERE staffid = '$tid'";
+
+    $run2 = $login2->query($sql2);
+
+    $ans = $login2->fetch();
+
+    $name = $ans['name'];
+
     echo "<tr>";
     echo "<td>".$results['aID']."</td>";
     echo "<td>".$results['sid']."</td>";
     echo "<td>".$results['subject']."</td>";
-    // echo "<td>".$ans['name']."</td>";
-    echo "<td>".$results['teacher']."</td>";
+    echo "<td>".$name."</td>";
     echo "<td>".$results['score']."</td>";
     echo "<td>".$results['grade']."</td>";
     echo "<td>".$results['class']."</td>";
@@ -993,6 +1003,7 @@ function viewAllAcademic()
   }
   echo '</table>';
 }
+
 
 
 if(isset($_POST['student']))
