@@ -28,10 +28,11 @@
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button><br><br>
+  <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button>
+  <a href="../admin/tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 
   </div>
-  </form>
+</form><br><br>
 
 <?php
 
@@ -47,5 +48,9 @@ else
 }
 
 ?>
+
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
 </body>
 </html>

@@ -20,6 +20,7 @@
 <body>
 
 <p id = "heading"> Staff, Subjects and Classes: Delete </p>
+<a href="cns.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 <br>
 
 <form method="post" id="form">
@@ -39,25 +40,29 @@
   </div>
 
   <button type="submit" class="btn btn-primary" id="butns" name="deleteStaffSubjects">Delete</button>
-  <a href="../admin/tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+  
   <br><br>
 
   </div>
   </form>
+
+  <?php
+
+  require_once('processteacher.php');
+
+  if (isset($_POST['deleteStaffSubjects']))
+  {
+    deleteStaffSubjects();
+  }
+  else
+  {
+    viewAllStaffSubjects();
+  }
+
+  ?>
+
+  <footer>
+    &copy2018  Nana Adjoa Bentil
+  </footer>
 </body>
 </html>
-
-<?php
-
-require_once('processteacher.php');
-
-if (isset($_POST['deleteStaffSubjects']))
-{
-  deleteStaffSubjects();
-}
-else
-{
-  viewAllStaffSubjects();
-}
-
-?>

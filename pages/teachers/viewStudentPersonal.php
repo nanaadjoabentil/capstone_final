@@ -21,6 +21,7 @@
 <body>
 
 <p id = "heading"> Student Personal Information </p>
+<a href="teacherindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 <br>
 
 <form method="post" id="form">
@@ -48,5 +49,9 @@ else
 }
 
 ?>
+
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
 </body>
 </html>

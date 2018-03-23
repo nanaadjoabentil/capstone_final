@@ -119,7 +119,7 @@ function registerParent()
     {
       echo "Registration Successful";
       //if query works, redirect to login page
-      header("location: parentLogin.php");
+      header("location: index.php");
     }
   }
   else

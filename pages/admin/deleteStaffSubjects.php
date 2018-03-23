@@ -19,31 +19,44 @@
   </head>
 <body>
 
-<p id = "heading"> Student Health Information </p>
-<a href="health.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+<p id = "heading"> Staff, Subjects and Classes: Delete </p>
+<a href="tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 <br>
 
 <form method="post" id="form">
   <div class="form-group">
-    <label for="id">Search by Student ID</label>
+    <label for="id">Delete by Staff ID</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
 
-  <button type="submit" class="btn btn-primary" id="butns" name="searchHealth">Search</button><br><br>
+  <div class="form-group">
+    <label for="id">Corresponding Subject</label>
+    <input type="text" class="form-control" id="subject" name="subject">
+  </div>
+
+  <div class="form-group">
+    <label for="id">Corresponding Class</label>
+    <input type="text" class="form-control" id="class" name="class">
+  </div>
+
+  <button type="submit" class="btn btn-primary" id="butns" name="deleteStaffSubjects">Delete</button>
+
+  <br><br>
 
   </div>
   </form>
+
   <?php
 
-  require_once('processteacher.php');
+  require_once('../teachers/processteacher.php');
 
-  if (isset($_POST['searchHealth']))
+  if (isset($_POST['deleteStaffSubjects']))
   {
-    searchHealth();
+    deleteStaffSubjects();
   }
   else
   {
-    viewAllHealth();
+    viewAllStaffSubjects();
   }
 
   ?>

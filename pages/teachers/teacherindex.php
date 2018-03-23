@@ -24,36 +24,21 @@
 <p id = "heading"> Dashboard </p>
 <br>
 
-<a href="teacherLogin.php"><input type="button" value="Back"></></a> &nbsp&nbsp&nbsp&nbsp&nbsp Welcome to the staff dashboard.
-<br><br><br>
+<h4 id="parentswelcome"> Welcome Teacher!</h4><br>
+You can access information about students, and staff from here. <br><br>
+To access these, click on the tab with the name of the information you would like to see. <br><br>
 
-<!-- <a href="staff.php">Staff Links</a><br><br>
-<a href="student.php">Student Links</a> -->
+        <form method="post" id="form">
+          <a href="index.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+          <button type="submit" class="btn btn-primary" id="butns" name="student">Student Information</button>
+          <button type="submit" class="btn btn-primary" id="butns" name="staff">Staff Information</button>
+          <br><br><br>
+          <?php require_once("processteacher.php"); ?>
+        </form>
 
-<p id = "subheading"> Staff </p>
-<nav>
-  <ul>
-    <a href="addStaffSubjects.php"><button id="dbutton">Add Staff Classes and Subjects Information</button></a>
-    <a href="updateStaff.php"><button id="dbutton">Update Staff Profile</button></a>
-    <a href="viewStaffProfile.php"><button id="dbutton">View Staff Profile</button></a><br>
-    <a href="staff.php" id="seeall">See All</a>
-    <br>
-  </ul>
-</nav>
+        <footer>
+          &copy2018  Nana Adjoa Bentil
+        </footer>
 
-<p id = "subheading"> Students </p>
-<nav>
-  <ul>
-    <a href="addStudentHealth.php"><button id="dbutton">Add Student's Health Information</button></a>
-    <a href="addStudentAcademic.php"><button id="dbutton">Add Student Academic Information</button></a>
-    <a href="viewStudentAcademic.php"><button id="dbutton">View Student Academic Information</button></a><br>
-    <a href="student.php" id="seeall">See All</a>
-  </ul>
-</nav>
-<br><br>
-
-<footer>
-  &copy2018  Nana Adjoa Bentil
-</footer>
 </body>
 </html>

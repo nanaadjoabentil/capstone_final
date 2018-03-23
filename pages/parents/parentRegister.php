@@ -24,6 +24,8 @@
 
     <form method="post" action="#" id="form">
        <?php require_once('processparent.php'); ?>
+
+       <a href="index.php">Go to Login Page</a><br>
        <div class="form-group">
          <label for="name">Name:</label>
          <input type="text" class="form-control" id="name" name="name" required>

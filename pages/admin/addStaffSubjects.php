@@ -20,37 +20,34 @@
 
 <body>
 
-  <p id="heading"> Delete an Academic Record </p>
+  <p id = "heading"> Staff Subjects and Classes: Add </p>
+  <a href="tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
   <br>
 
   <form method="post" id="form">
+       <?php require_once("../teachers/processteacher.php");?>
 
-      <div class="form-group">
-        <label for="id">ID of Record to Delete:</label>
-        <input type="text" class="form-control" id="id" name="id">
-      </div>
+       <div class="form-group">
+         <label for="id">Staff ID:</label>
+         <input type="text" class="form-control" id="id" name="id">
+       </div>
 
-      <button type="submit" class="btn btn-primary" id="butns" name="deleteAcademic">Delete Record</button><br><br>
+       <div class="form-group">
+         <label for="name">Subject Taught:</label>
+         <input type="text" class="form-control" id="subject" name="subject" required>
+       </div>
 
-      </div>
-      </form>
+       <div class="form-group">
+         <label for="tel">Class/Grade:</label>
+         <input type="text" class="form-control" id="class" name="class" required>
+       </div>
 
-      <?php
+       <button type="submit" class="btn btn-primary" id="butns" name="addStaffSubjects">Add</button>
 
-      require_once('processteacher.php');
+   </form>
 
-      if (isset($_POST['deleteAcademic']))
-      {
-        deleteAcademic();
-      }
-      else
-      {
-        viewAllAcademic();
-      }
-      ?>
-
-      <footer>
-        &copy2018  Nana Adjoa Bentil
-      </footer>
+   <footer>
+     &copy2018  Nana Adjoa Bentil
+   </footer>
   </body>
 </html>

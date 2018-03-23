@@ -1058,13 +1058,13 @@ function dashboardstaff()
   '<nav>
     <ul>
     <form method="post">
-      <a href="addStaff.php"><button id="dbutton" name="addprofile"><br>Add New Staff Profile</button></a>
+      <button id="dbutton" name="addprofile"><br>Add New Staff Profile</button>
       <button id="dbutton" name="addcns">Add Staff Subjects and Classes Information</button>
-      <a href="viewStaff.php"><button id="dbutton" name="viewprofile"><br>View Staff Profile</button></a>
-      <a href="updateStaff.php"><button id="dbutton" name="updateprofile"><br>Update Staff Personal Information</button></a>
-      <a href="../teachers/viewStaffSubjects.php"><button id="dbutton" name="viewcns">View Staff Subjects and Classes Information</button></a>
-      <a href="deleteStaff.php"><button id="dbutton" name="deleteprofile"><br>Delete Staff Personal Information</button></a>
-      <a href="../teachers/deleteStaffSubjects.php"><button id="dbutton" name="deletecns">Delete Staff Subjects and Classes Information</button></a>
+      <button id="dbutton" name="viewprofile"><br>View Staff Profile</button>
+      <button id="dbutton" name="updateprofile"><br>Update Staff Personal Information</button>
+      <button id="dbutton" name="viewcns">View Staff Subjects and Classes Information</button>
+      <button id="dbutton" name="deleteprofile"><br>Delete Staff Personal Information</button>
+      <button id="dbutton" name="deletecns">Delete Staff Subjects and Classes Information</button>
       </form>
     </ul>
   </nav>';
@@ -1072,7 +1072,7 @@ function dashboardstaff()
 
 if(isset($_POST['addcns']))
 {
-  header("location: ../teachers/addStaffSubjects.php");
+  header("location: addStaffSubjects.php");
 }
 if(isset($_POST['viewprofile']))
 {
@@ -1084,7 +1084,7 @@ if(isset($_POST['updateprofile']))
 }
 if(isset($_POST['viewcns']))
 {
-  header("location: ../teachers/viewStaffSubjects.php");
+  header("location: viewStaffSubjects.php");
 }
 if(isset($_POST['deleteprofile']))
 {
@@ -1092,7 +1092,7 @@ if(isset($_POST['deleteprofile']))
 }
 if(isset($_POST['deletecns']))
 {
-  header("location: ../teachers/deleteStaffSubjects.php");
+  header("location: deleteStaffSubjects.php");
 }
 if(isset($_POST['addprofile']))
 {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-  <img src="../../images/2.png" alt="pic" width="1270px">
+  <img src="../../images/2.png" alt="pic" width="1235px" height="300px">
 </header>
   <head>
     <meta charset="utf-8">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../../css/dashboard.css"  media="screen,projection"/>
     <script type="text/javascript" src="../../js/bootstrap.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 
@@ -17,40 +18,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
-
 <body>
 
-  <p id="heading"> Delete an Academic Record </p>
-  <br>
+<p id = "heading"> Student Academic Information </p>
+<br>
 
   <form method="post" id="form">
+    <a href="teacherindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+    <button type="submit" class="btn btn-primary" id="butns" name="add">Add</button>
+    <button type="submit" class="btn btn-primary" id="butns" name="search">Search</button>
+    <br><br><br>
+    <?php
+    require_once("processteacher.php");
 
-      <div class="form-group">
-        <label for="id">ID of Record to Delete:</label>
-        <input type="text" class="form-control" id="id" name="id">
-      </div>
+    if (isset($_POST['search']))
+    {
+      header("location: viewStudentAcademic.php");
+    }
+    else if (isset($_POST['add']))
+    {
+      header("location: addStudentAcademic.php");
+    }
+    else
+    {
+      viewAllAcademic();
+    }
+    ?>
+  </form>
 
-      <button type="submit" class="btn btn-primary" id="butns" name="deleteAcademic">Delete Record</button><br><br>
+  <footer>
+    &copy2018  Nana Adjoa Bentil
+  </footer>
 
-      </div>
-      </form>
-
-      <?php
-
-      require_once('processteacher.php');
-
-      if (isset($_POST['deleteAcademic']))
-      {
-        deleteAcademic();
-      }
-      else
-      {
-        viewAllAcademic();
-      }
-      ?>
-
-      <footer>
-        &copy2018  Nana Adjoa Bentil
-      </footer>
   </body>
-</html>
+  </html>

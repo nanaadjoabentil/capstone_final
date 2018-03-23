@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../css/register.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../../css/dashboard.css"  media="screen,projection"/>
     <script type="text/javascript" src="../../js/bootstrap.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 
@@ -17,32 +18,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
-
 <body>
 
-  <br><br><br><br><br><br><br>
+<p id = "heading"> Staff Profile Information </p>
+<br>
 
-     <form method="post" class="form-signin" id="form">
-       <?php require_once('processparent.php');?>
+  <form method="post" id="form">
+    <a href="teacherindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+    <button type="submit" class="btn btn-primary" id="butns" name="update">Update Profile</button>
+    <button type="submit" class="btn btn-primary" id="butns" name="search">Search</button>
+    <br><br><br>
+    <?php
+    require_once("processteacher.php");
 
-       <div class="wrapper">
-           <h2 class="form-signin-heading">Login: Parents</h2><br>
+    if (isset($_POST['update']))
+    {
+      header("location: updateStaff.php");
+    }
+    else if (isset($_POST['search']))
+    {
+      header("location: viewStaffProfile.php");
+    }
+    ?>
+  </form>
 
-           <input type="text" class="form-control" name="username" placeholder="Username" required/><br>
-           <input type="password" class="form-control" name="password" placeholder="Password" required/><br>
+  <footer>
+    &copy2018  Nana Adjoa Bentil
+  </footer>
 
-           <button class="btn btn-lg btn-primary btn-block" type="submit" id="butns" name="parentlogin">Login</button>
-         </form>
-       </div>
-    </body>
+  </body>
   </html>
-
-<?php
-
-if(isset($_POST['parentlogin']))
-{
-  $username = $_POST['username'];
-  viewAcademic();
-}
-
-?>

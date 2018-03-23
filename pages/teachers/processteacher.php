@@ -547,4 +547,67 @@ function deleteStaffSubjects()
     echo "Could not Delete.";
   }
 }
+
+if(isset($_POST['student']))
+{
+  dashboardstudent();
+}
+//function for three buttons dashboard
+function dashboardstudent()
+{
+  echo
+    '<nav>
+      <ul>
+      <form method="post">
+        <a href="academic.php"><button id="dbutton" name="academic"><br><br>Academic Information</button></a>
+        <a href="health.php"><button id="dbutton" name="health"><br><br>Health Information</button></a>
+        <a href="personal.php"><button id="dbutton" name="personal"><br><br>Personal Information</button></a
+        </form>
+      </ul>
+    </nav>';
+}
+
+if(isset($_POST['academic']))
+{
+  header("location: academic.php");
+}
+
+if(isset($_POST['health']))
+{
+  header("location: health.php");
+}
+
+if(isset($_POST['personal']))
+{
+  header("location: viewStudentPersonal.php");
+}
+
+if(isset($_POST['staff']))
+{
+  dashboardstaff();
+}
+
+function dashboardstaff()
+{
+  echo
+  '<nav>
+    <ul>
+    <form method="post">
+      <button id="dbutton" name="profile"><br>Staff Profile</button>
+      <button id="dbutton" name="cns"><br>Subjects and Classes Information</button>
+      </form>
+    </ul>
+  </nav>';
+}
+
+if(isset($_POST['profile']))
+{
+  header("location: profile.php");
+}
+
+if(isset($_POST['cns']))
+{
+  header("location: cns.php");
+}
+
 ?>

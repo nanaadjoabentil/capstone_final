@@ -22,6 +22,8 @@
 <p id = "heading"> View Student Academic Information </p>
 <br>
 
+<a href="academic.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
+
 <form method="post" id="form">
   <div class="form-group">
     <label for="id">Search by Student ID Number</label>
@@ -44,5 +46,9 @@ else
   viewAllAcademic();
 }
 ?>
+
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
 </body>
 </html>

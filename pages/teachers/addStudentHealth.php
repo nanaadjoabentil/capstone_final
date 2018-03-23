@@ -19,6 +19,7 @@
   </head>
 <body>
 <p id = "heading"> Add a health condition </p>
+<a href="health.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 <br>
 
 <form method="post" id="form">
@@ -41,6 +42,11 @@
 </div>
 
 <button type="submit" class="btn btn-primary" id="butns" name="enterCondition">Submit</button>
+</form>
+
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
 
   </body>
 </html>

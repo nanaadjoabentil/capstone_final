@@ -19,6 +19,7 @@
    </head>
 <body>
 <p id = "heading"> Add Student Academic Information </p>
+<a href="academic.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 <br>
 
 <!--bootstrap form below-->
@@ -114,6 +115,11 @@
 </div>
 
 <button type="submit" class="btn btn-primary" id="butns" name="addAcademic">Submit</button>
+</form>
+
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
 
 </body>
 </html>

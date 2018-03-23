@@ -20,6 +20,7 @@
 <body>
 
 <p id = "heading"> Staff, Subjects and Classes: Search </p>
+<a href="cns.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 <br>
 
 <form method="post" id="form">
@@ -29,7 +30,6 @@
   </div>
 
   <button type="submit" class="btn btn-primary" id="butns" name="searchStaffSubjects">Search</button>
-  <a href="../admin/tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
   <br><br>
 
   </div>
@@ -49,5 +49,9 @@ else
 }
 
 ?>
+
+<footer>
+  &copy2018  Nana Adjoa Bentil
+</footer>
 </body>
 </html>

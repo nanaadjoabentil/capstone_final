@@ -21,6 +21,7 @@
 <body>
 
   <p id = "heading"> Staff Subjects and Classes: Add </p>
+  <a href="cns.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
   <br>
 
   <form method="post" id="form">
@@ -42,8 +43,11 @@
        </div>
 
        <button type="submit" class="btn btn-primary" id="butns" name="addStaffSubjects">Add</button>
-       <a href="../admin/tindex.php"><input type="button" class="btn btn-primary" id="butns" value="Back"></a>
 
    </form>
+
+   <footer>
+     &copy2018  Nana Adjoa Bentil
+   </footer>
   </body>
 </html>
