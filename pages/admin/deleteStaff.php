@@ -22,9 +22,13 @@
 
 <form method="post" id="form">
 
- <div class="form-group">
+ <!-- <div class="form-group"> -->
     <label for="id">Delete by ID:</label>
-    <input type="text" class="form-control" id="id" name="id">
+    <?php
+    require_once("processadmin.php");
+    seeStaffNames();
+    ?>
+    <!-- <input type="text" class="form-control" id="id" name="id"> -->
   </div>
 
   <button type="submit" class="btn btn-primary" id="butns" name="deleteStaff">Delete</button>

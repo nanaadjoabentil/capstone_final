@@ -28,9 +28,13 @@
       <!-- including php page with function to process the insertion of the data entered in form into database -->
       <?php require_once('processadmin.php');?>
 
-        <div class="form-group">
-          <label for="id">Student ID:</label>
-          <input type="text" class="form-control" id="id" name="id" required>
+        <!-- <div class="form-group"> -->
+          <label for="id">Student:</label>
+          <?php
+          require_once("processadmin.php");
+          seeStudentNames_health();
+          ?>
+          <!-- <input type="text" class="form-control" id="id" name="id" required> -->
         </div>
 
         <div class="form-group">

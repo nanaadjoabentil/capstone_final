@@ -330,15 +330,22 @@ function searchHealth()
 
   $run = $login->query($sql);
 
-        //loop through and print all results with the specified ID
-
       while ($results = $login->fetch())
       {
-        echo $results['cid'].'<br><br>';
-        echo "Student ID: ". $results['sid'].'<br><br>';
-        echo "Health Condition: ". $results['health_condition'].'<br><br>';
-        echo "Details: ". $results['details'].'<br><br><br><br>';
+        $sql2 = "SELECT firstname, lastname FROM student WHERE id = '$id'";
+
+        $connect2 = new Connect;
+
+        $run2 = $connect2->query($sql2);
+
+        while($results2 = $connect2->fetch())
+        {
+          echo $results['cid'].'<br><br>';
+          echo "Student: ". $results2['firstname']." ". $results2['lastname'].'<br><br>';
+          echo "Health Condition: ". $results['health_condition'].'<br><br>';
+          echo "Details: ". $results['details'].'<br><br><br><br>';
       }
+    }
 }
 
 
@@ -351,13 +358,26 @@ function viewAllHealth()
 
   $run = $login->query($sql);
 
-      while ($results = $login->fetch())
+
+      if ($run)
       {
-        echo "Record ID: ".$results['cid'].'<br><br>';
-        echo "Student ID: ". $results['sid'].'<br><br>';
-        echo "Health Condition: ". $results['health_condition'].'<br><br>';
-        echo "Details: ". $results['details'].'<br><br><br><br>';
+        while ($results = $login->fetch())
+        {
+        $sql2 = "SELECT firstname, lastname FROM student WHERE id IN (SELECT sid FROM health_conditions)";
+
+        $connect2 = new Connect;
+
+        $run2 = $connect2->query($sql2);
+
+        while ($results2 = $connect2->fetch())
+        {
+          echo "Record ID: ".$results['cid'].'<br><br>';
+          echo "Student: ". $results2['firstname']." ". $results2['lastname'].'<br><br>';
+          echo "Health Condition: ". $results['health_condition'].'<br><br>';
+          echo "Details: ". $results['details'].'<br><br><br><br>';
+        }
       }
+    }
 }
 
 //function to delete a health record
@@ -1145,6 +1165,60 @@ if(isset($_POST['delete']))
 }
 
 
+function seeStaffNames()
+{
+  $sql = "SELECT staffid, name FROM staffProfile";
 
+  $connect = new Connect;
 
+  $run = $connect->query($sql);
+echo "<br>";
+echo "<div class='form-group'>";
+echo "<select name=\"id\" class='form-control'>";
+
+while(  $results = $connect->fetch())
+{
+
+  echo "<option value=".$results['staffid'].">".$results['name']."</option>";
+}
+  echo "</select>";
+}
+
+function seeStudentNames()
+{
+  $sql = "SELECT id, firstname, middlename, lastname FROM student";
+
+  $connect = new Connect;
+
+  $run = $connect->query($sql);
+  echo "<br>";
+  echo "<div class='form-group'>";
+  echo "<select class='form-control'>";
+
+  while($results = $connect->fetch())
+  {
+    echo '<option name="id" value='.$results['id'].'>'.$results['firstname']." ".$results['lastname'].'</option>';
+  }
+    echo "</select>";
+  }
+
+  function seeStudentNames_health()
+  {
+    $sql = "SELECT id, firstname, lastname, cid, health_condition, details
+            FROM student, health_conditions
+            WHERE student.id = health_conditions.sid";
+
+    $connect = new Connect;
+
+    $run = $connect->query($sql);
+    echo "<br>";
+    echo "<div class='form-group'>";
+    echo "<select class='form-control'>";
+
+    while($results = $connect->fetch())
+    {
+      echo '<option name="id" value='.$results['id'].'>'.$results['firstname']." ".$results['lastname'].'</option>';
+    }
+      echo "</select>";
+    }
 ?>

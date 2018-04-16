@@ -25,9 +25,13 @@
 
   <form method="post" id="form">
 
-    <div class="form-group">
-      <label for="id">Student ID Number:</label>
-      <input type="text" class="form-control" id="id" name="id">
+    <!-- <div class="form-group"> -->
+      <label for="id">Student:</label>
+      <!-- <input type="text" class="form-control" id="id" name="id"> -->
+      <?php
+      require_once("processadmin.php");
+      seeStudentNames_health();
+      ?>
     </div>
 
       <div class="form-group">

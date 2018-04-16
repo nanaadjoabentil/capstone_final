@@ -24,9 +24,12 @@
 <br>
 
 <form method="post" id="form">
-  <div class="form-group">
-    <label for="id">Delete by Staff ID</label>
-    <input type="text" class="form-control" id="id" name="id">
+  <!-- <div class="form-group"> --><br>
+    <label for="id">Teacher </label>
+    <?php
+    require_once("processadmin.php");
+    seeStaffNames();
+    ?>
   </div>
 
   <div class="form-group">
